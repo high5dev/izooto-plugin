@@ -1,0 +1,29 @@
+name: izooto_plugin
+description: A new iZooto Notification Flutter plugin.
+version: 0.0.1
+author: Amit Kumar Gupta<amit@datability.co>
+homepage: https://www.izooto.com
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.20.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+flutter:
+
+  plugin:
+    platforms:
+      android:
+        package: com.izooto_plugin
+        pluginClass: IzootoPlugin
+      ios:
+        pluginClass: IzootoPlugin
+
