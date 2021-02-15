@@ -7,11 +7,11 @@ public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenter
     public func onNotificationOpen(action: Dictionary<String, Any>) {
       let jsonData = try! JSONSerialization.data(withJSONObject: action, options: [])
         let decoded = String(data: jsonData, encoding: .utf8)!
-        channel.invokeMethod("onOpenNotification", arguments: decoded)
+        channel.invokeMethod("openNotification", arguments: decoded)
     }
     
     public func onHandleLandingURL(url: String) {
-        channel.invokeMethod("onOpenLandingURL", arguments: url)
+        channel.invokeMethod("handleLandingURL", arguments: url)
     }
     
     public func onNotificationReceived(payload: Payload) {
@@ -30,7 +30,7 @@ public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenter
        }
     
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "izooto_plugin", binaryMessenger: registrar.messenger())
+    let channel = FlutterMethodChannel(name: "izooto_flutter", binaryMessenger: registrar.messenger())
     let instance = SwiftIzootoPlugin(channel: channel)
     registrar.addApplicationDelegate(instance)
 
@@ -46,13 +46,11 @@ public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenter
     
     switch (call.method) {
     
-    case "iZootoiOSInit":
+    case "iOSInit":
         let map = call.arguments as? Dictionary<String, String>
-                   let appId = map?["appId"]
-
+        let appId = map?["appId"]
         let iZootoInitSettings = ["auto_prompt": true,"nativeWebview": true,"provisionalAuthorization":false]
         UNUserNotificationCenter.current().delegate = self
-        // initialisation
         iZooto.initialisation(izooto_id: appId!, application: UIApplication.shared,  iZootoInitSettings:iZootoInitSettings)
         iZooto.notificationReceivedDelegate = self
         iZooto.notificationOpenDelegate = self
@@ -65,7 +63,6 @@ public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenter
         break;
         
     case "addEvents":
-       result("iOS " + UIDevice.current.systemVersion)
         let map = call.arguments as? Dictionary<String, String>
         let eventName = map?["eventName"]
         iZooto.addEvent(eventName: eventName!, data:map!)
@@ -80,7 +77,6 @@ public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenter
     case "setSubscription":
         let map = call.arguments as? Dictionary<String, Any>
         let enable: Bool = (map?["enable"] as? Bool)!
-        print("Enable",enable)
         iZooto.setSubscription(isSubscribe: enable)
        break;
     default:
@@ -134,7 +130,7 @@ public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenter
             let userInfo = notification.request.content.userInfo
             let jsonData = try! JSONSerialization.data(withJSONObject: userInfo, options: [])
               let decoded = String(data: jsonData, encoding: .utf8)!
-            channel.invokeMethod("onReceivedPayload", arguments: decoded)
+            channel.invokeMethod("receivedPayload", arguments: decoded)
             completionHandler([.alert])
         }
         

@@ -1,8 +1,7 @@
-import 'dart:async';
-import 'package:izooto_plugin/src/iZootoApnsPushController.dart';
-import 'package:izooto_plugin/src/iZootoConnector.dart';
+import 'package:izooto_plugin/src/iZootoConnection.dart';
+import 'package:izooto_plugin/src/iZootoiOS.dart';
 PushConnector createPushConnector() {
 
-    return iZootoApnsPushConnector();
+    return iZootoiOS();
 
 }

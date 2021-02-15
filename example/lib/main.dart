@@ -1,7 +1,6 @@
-import 'package:izooto_plugin/IzootoPlugin.dart';
-import 'package:izooto_plugin/iZooto_flutter_apns.dart';
+import 'package:izooto_plugin/iZooto_flutter.dart';
 import 'package:flutter/material.dart';
-
+import 'dart:async';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,12 +13,45 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  String _androidTag = 'iZooto Android -> ';
+  String _iOSTag='iZooto iOS';
 
+  Map<String, String> data;
   final PushConnector connector = createPushConnector();
+  List<String> list, list2;
 
   Future<void> _iZootoInitialise() async {
-    IzootoPlugin.iZootoiOSInit(appId: "5f2f1dabe93b9f2329ead1bad063ec6ab6504766");
+/*
+  Android Integration
+ */
+  iZooto.androidInit();
+  iZooto.onNotificationOpened((data) {
+    print(_androidTag+" Notification Click "+data);
+  });
 
+  iZooto.onTokenReceived((token) {
+    print(_androidTag+" -> Token->"+token);
+  });
+
+  iZooto.onNotificationReceived((payload) {
+    print(_androidTag +"Payload "+payload.title);
+
+  });
+
+  iZooto.onWebView((landingUrl) {
+    print(_androidTag+"Landing URL "+landingUrl);
+   // _launchInWebViewOrVC(landingUrl);
+    // _navigateToNextScreen(context);
+  });
+
+
+
+/*
+iOS Integration
+ */
+
+
+  iZooto.iOSInit(appId: "5f2f1dabe93b9f2329ead1bad063ec6ab6504766");
     final connector = this.connector;
     connector.configure(
       onLaunch: (data) => onPush('onLaunch', data),
@@ -28,31 +60,25 @@ class _MyAppState extends State<MyApp> {
       onBackgroundMessage: _onBackgroundMessage,
     );
     connector.token.addListener(() {
-      print('Token ${connector.token.value}');
+      print(_iOSTag+'Token ${connector.token.value}');
     });
     connector.receivePayload.addListener(() {
-      print('Receivedpayload ${connector.receivePayload.value}');
+      print(_iOSTag+' ${connector.receivePayload.value}');
     });
     connector.openNotification.addListener(() {
-      print('OpenNotification ${connector.openNotification.value}');
+      print(_iOSTag+' ${connector.openNotification.value}');
     });
 
     connector.openLandingURL.addListener(() {
-      print('LandingURL ${connector.openLandingURL.value}');
+      print(_iOSTag+' ${connector.openLandingURL.value}');
     });
-
-    // for subscription
-   // IzootoPlugin.setSubscription(false);
-    IzootoPlugin.addUserProperties("Language", "Punjabi");
-
-
   }
 
   @override
   void initState() {
+
     _iZootoInitialise();
     super.initState();
-
   }
 
   @override
@@ -68,7 +94,7 @@ class _MyAppState extends State<MyApp> {
             children: [
               Text('Token:'),
               ValueListenableBuilder(
-                valueListenable: connector.token,
+                 valueListenable: connector.token,
                 builder: (context, data, __) {
                   return SelectableText('$data');
                 },
@@ -79,6 +105,7 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+
 }
 
 Future<dynamic> onPush(String name, Map<String, dynamic> payload) {

@@ -1,18 +1,13 @@
 import 'dart:async';
-
 import 'package:flutter/foundation.dart';
-import 'package:izooto_plugin/src/iZootoConnector.dart';
+import 'package:izooto_plugin/src/iZootoConnection.dart';
 import 'package:flutter/services.dart' hide MessageHandler;
-export 'package:izooto_plugin/src/iZootoConnector.dart';
-
 typedef WillPresentHandler = Future<bool> Function(Map<String, dynamic>);
-
-class iZootoApnsPushConnector extends PushConnector {
-  final MethodChannel _channel = const MethodChannel('izooto_plugin');
+class iZootoiOS extends PushConnector {
+  final MethodChannel _channel = const MethodChannel('izooto_flutter');
   MessageHandler _onMessage;
   MessageHandler _onLaunch;
   MessageHandler _onResume;
-
   @override
   void requestNotificationPermissions(
       [IosNotificationSettings iosSettings = const IosNotificationSettings()]) {
@@ -26,8 +21,6 @@ class iZootoApnsPushConnector extends PushConnector {
   Stream<IosNotificationSettings> get onIosSettingsRegistered {
     return _iosSettingsStreamController.stream;
   }
-
-  /// Sets up [MessageHandler] for incoming messages.
   @override
   void configure({
     MessageHandler onMessage,
@@ -47,13 +40,13 @@ class iZootoApnsPushConnector extends PushConnector {
       case 'onToken':
         token.value = call.arguments;
         return null;
-      case 'onReceivedPayload':
+      case 'receivedPayload':
         receivePayload.value = call.arguments;
         return null;
-      case 'onOpenNotification':
-        openNotification.value = call.arguments.ca;
+      case 'openNotification':
+        openNotification.value = call.arguments;
         return null;
-      case 'onOpenLandingURL':
+      case 'handleLandingURL':
         openLandingURL.value = call.arguments;
         return null;
 
@@ -105,8 +98,6 @@ class iZootoApnsPushConnector extends PushConnector {
     _iosSettingsStreamController.close();
     super.dispose();
   }
-
-  /// https://developer.apple.com/documentation/usernotifications/declaring_your_actionable_notification_types
   Future<void> setNotificationCategories(
       List<UNNotificationCategory> categories) {
     return _channel.invokeMethod(
@@ -121,8 +112,8 @@ class iZootoApnsPushConnector extends PushConnector {
     token.value = null;
   }
 
-  @override
-  ValueNotifier<String> get receivepayload => throw UnimplementedError();
+// @override
+// ValueNotifier<String> get receivepayload => throw UnimplementedError();
 }
 
 class IosNotificationSettings {
@@ -149,7 +140,6 @@ class IosNotificationSettings {
   String toString() => 'PushNotificationSettings ${toMap()}';
 }
 
-/// https://developer.apple.com/documentation/usernotifications/unnotificationcategory
 class UNNotificationCategory {
   final String identifier;
   final List<UNNotificationAction> actions;
@@ -172,8 +162,6 @@ class UNNotificationCategory {
     @required this.options,
   });
 }
-
-/// https://developer.apple.com/documentation/usernotifications/UNNotificationAction
 class UNNotificationAction {
   final String identifier;
   final String title;
@@ -181,9 +169,6 @@ class UNNotificationAction {
 
   static const defaultIdentifier =
       'com.apple.UNNotificationDefaultActionIdentifier';
-
-  /// Returns action identifier associated with this push.
-  /// May be null, UNNotificationAction.defaultIdentifier, or value declared in setNotificationCategories
   static String getIdentifier(Map<String, dynamic> payload) {
     return payload['aps']['actionIdentifier'];
   }
@@ -202,15 +187,11 @@ class UNNotificationAction {
     };
   }
 }
-
-/// https://developer.apple.com/documentation/usernotifications/unnotificationactionoptions
 enum UNNotificationActionOptions {
   authenticationRequired,
   destructive,
   foreground,
 }
-
-/// https://developer.apple.com/documentation/usernotifications/unnotificationcategoryoptions
 enum UNNotificationCategoryOptions {
   customDismissAction,
   allowInCarPlay,
