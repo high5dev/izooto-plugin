@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:izooto_plugin/iZooto_flutter.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -13,45 +15,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _androidTag = 'iZooto Android -> ';
-  String _iOSTag='iZooto iOS';
 
-  Map<String, String> data;
+  String _Tag='iZooto Flutter Plugin ->';
   final PushConnector connector = createPushConnector();
-  List<String> list, list2;
-
   Future<void> _iZootoInitialise() async {
 /*
-  Android Integration
+  iZooto Integration
  */
-  iZooto.androidInit();
-  iZooto.onNotificationOpened((data) {
-    print(_androidTag+" Notification Click "+data);
-  });
+  iZooto.androidInit(); // for Android
 
-  iZooto.onTokenReceived((token) {
-    print(_androidTag+" -> Token->"+token);
-  });
-
-  iZooto.onNotificationReceived((payload) {
-    print(_androidTag +"Payload "+payload.title);
-
-  });
-
-  iZooto.onWebView((landingUrl) {
-    print(_androidTag+"Landing URL "+landingUrl);
-   // _launchInWebViewOrVC(landingUrl);
-    // _navigateToNextScreen(context);
-  });
-
-
-
-/*
-iOS Integration
- */
-
-
-  iZooto.iOSInit(appId: "5f2f1dabe93b9f2329ead1bad063ec6ab6504766");
+  // NOTE: Replace with your own app ID
+  iZooto.iOSInit(appId: "5f2f1dabe93b9f2329ead1bad063ec6ab6504766"); // for iOS
     final connector = this.connector;
     connector.configure(
       onLaunch: (data) => onPush('onLaunch', data),
@@ -60,18 +34,43 @@ iOS Integration
       onBackgroundMessage: _onBackgroundMessage,
     );
     connector.token.addListener(() {
-      print(_iOSTag+'Token ${connector.token.value}');
+      print(_Tag+'Token : ${connector.token.value}');
     });
     connector.receivePayload.addListener(() {
-      print(_iOSTag+' ${connector.receivePayload.value}');
+      print(_Tag+' Payload : ${connector.receivePayload.value}');
     });
     connector.openNotification.addListener(() {
-      print(_iOSTag+' ${connector.openNotification.value}');
+      print(_Tag+'Notification Tap : ${connector.openNotification.value}');
     });
 
     connector.openLandingURL.addListener(() {
-      print(_iOSTag+' ${connector.openLandingURL.value}');
+      print(_Tag+'Landing URL : ${connector.openLandingURL.value}');
     });
+    /*
+
+        iZooto.addEvent('flutterplugin16', {'Sports':'cricket'});
+        iZooto.addUserProperty({'Language':'English '});
+        iZooto.setSubscription(false);
+        iZooto.setFirebaseAnalytics(true);
+        iZooto.setSubscription(true);
+        List<String> list , list2;
+        list = ['Football'];
+        list2 =['Chocolate'];
+        iZooto.addTag(list);
+        iZooto.removeTag(list2);
+     */
+
+
+
+
+
+
+
+
+
+
+
+
   }
 
   @override
@@ -92,7 +91,7 @@ iOS Integration
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text('Token:'),
+              Text(' Device Token:'),
               ValueListenableBuilder(
                  valueListenable: connector.token,
                 builder: (context, data, __) {
