@@ -33,14 +33,14 @@ class iZooto{
     });
 
   }
-  static addUserProperties(String key, String value) {
+  static addUserProperties(String key, String value) async {
     _channel.invokeMethod('addUserProperties', {
       'key': key,
       'value': value,
     });
   }
-  static setSubscription(bool enable) {
-    _channel.invokeMethod('setSubscription', {'enable': enable});
+  static setSubscription(bool enable) async {
+    _channel.invokeMethod('iZootoSetSubscription', {'enable': enable});
   }
   static Future<String> receiveToken() async
   {

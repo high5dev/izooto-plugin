@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -47,6 +48,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
         iZootoNotificationListener iZootoNotificationListener = new iZootoNotificationListener();
         switch (call.method) {
             case iZootoConstant.AndroidINITIASE:
+                iZooto.isHybrid=true;
                 iZooto.initialize(context)
                         .setTokenReceivedListener(iZootoNotificationListener)
                         .setNotificationReceiveListener(iZootoNotificationListener)
@@ -55,20 +57,26 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                         .build();
                 break;
             case iZootoConstant.SETSUBSCRIPTION:
-                boolean setSubscription = (boolean) call.arguments;
-                iZooto.setSubscription(setSubscription);
+                try {
+                    boolean setSubscription = (boolean) call.arguments;
+                    iZooto.setSubscription(setSubscription);
+                }catch (Exception ex)
+                {
+                    Log.v("Handle",ex.toString());
+                }
                 break;
             case iZootoConstant.FIREBASEANLYTICS:
-                boolean trackFirebaseAnalytics = (boolean) call.arguments;
-                iZooto.setFirebaseAnalytics(trackFirebaseAnalytics);
+                    boolean trackFirebaseAnalytics = (boolean) call.arguments;
+                    iZooto.setFirebaseAnalytics(trackFirebaseAnalytics);
                 break;
             case iZootoConstant.ADDEVENTS:
-                String eventName = call.argument(iZootoConstant.EVENT_NAME);
-                HashMap<String, Object> hashMapEvent = new HashMap<>();
-                hashMapEvent = (HashMap<String, Object>) call.argument(iZootoConstant.EVENT_VALUE);
-                iZooto.addEvent(eventName, hashMapEvent);
+                    String eventName = call.argument(iZootoConstant.EVENT_NAME);
+                    HashMap<String, Object> hashMapEvent = new HashMap<>();
+                    hashMapEvent = (HashMap<String, Object>) call.argument(iZootoConstant.EVENT_VALUE);
+                    iZooto.addEvent(eventName, hashMapEvent);
                 break;
             case iZootoConstant.ADDPROPERTIES:
+
                 HashMap<String, Object> hashMapUserProperty = new HashMap<>();
                 hashMapUserProperty = (HashMap<String, Object>) call.arguments;
                 iZooto.addUserProperty(hashMapUserProperty);
@@ -99,12 +107,14 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 break;
             case iZootoConstant.iZOOTO_OPEN_NOTIFICATION:
                 iZootoNotificationListener.onNotificationOpened(notificationOpenedData);
+                iZooto.notificationClick(iZootoNotificationListener);
                 break;
             case iZootoConstant.iZOOTO_DEVICE_TOKEN:
                 iZootoNotificationListener.onTokenReceived(notificationToken);
                 break;
             case iZootoConstant.iZOOOTO_HANDLE_WEBVIEW:
                 iZootoNotificationListener.onWebView(notificationWebView);
+                iZooto.notificationWebView(iZootoNotificationListener);
                 break;
             default:
                  result.notImplemented();

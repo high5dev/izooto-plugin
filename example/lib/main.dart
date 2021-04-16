@@ -23,7 +23,7 @@ class _MyAppState extends State<MyApp> {
   iZooto Integration
  */
   iZooto.androidInit(); // for Android
-
+  iZooto.setSubscription(true);
   // NOTE: Replace with your own app ID
   iZooto.iOSInit(appId: "5f2f1dabe93b9f2329ead1bad063ec6ab6504766"); // for iOS
     final connector = this.connector;
@@ -46,13 +46,16 @@ class _MyAppState extends State<MyApp> {
     connector.openLandingURL.addListener(() {
       print(_Tag+'Landing URL : ${connector.openLandingURL.value}');
     });
+    iZooto.onNotificationOpened((data) {
+      print("Data--->"+data);
+    });
     /*
 
         iZooto.addEvent('flutterplugin16', {'Sports':'cricket'});
         iZooto.addUserProperty({'Language':'English '});
         iZooto.setSubscription(false);
         iZooto.setFirebaseAnalytics(true);
-        iZooto.setSubscription(true);
+
         List<String> list , list2;
         list = ['Football'];
         list2 =['Chocolate'];
