@@ -15,8 +15,8 @@ A new Flutter plugin.
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
   s.dependency 'Flutter'
-  s.platform = :ios, '9.0'
-  s.dependency 'iZootoiOSSDK','1.0.10'
+  s.platform = :ios, '10.0'
+  s.dependency 'iZootoiOSSDK'
   s.static_framework = true
 
 

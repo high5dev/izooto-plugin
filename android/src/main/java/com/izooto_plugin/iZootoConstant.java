@@ -18,4 +18,5 @@ public interface iZootoConstant {
     String EVENT_NAME = "eventName";
     String EVENT_VALUE="eventValue";
     String iZOOTO_PLUGIN_NAME="izooto_flutter";
+    String Notification_SOUND="notificationSound";
 }

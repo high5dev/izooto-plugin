@@ -9,19 +9,6 @@ class iZootoiOS extends PushConnector {
   MessageHandler _onLaunch;
   MessageHandler _onResume;
   @override
-  void requestNotificationPermissions(
-      [IosNotificationSettings iosSettings = const IosNotificationSettings()]) {
-    _channel.invokeMethod(
-        'requestNotificationPermissions', iosSettings.toMap());
-  }
-
-  final StreamController<IosNotificationSettings> _iosSettingsStreamController =
-  StreamController<IosNotificationSettings>.broadcast();
-
-  Stream<IosNotificationSettings> get onIosSettingsRegistered {
-    return _iosSettingsStreamController.stream;
-  }
-  @override
   void configure({
     MessageHandler onMessage,
     MessageHandler onLaunch,
@@ -38,24 +25,13 @@ class iZootoiOS extends PushConnector {
   Future<dynamic> _handleMethod(MethodCall call) async {
     switch (call.method) {
       case 'onToken':
-        token.value = call.arguments;
-        return null;
+       return token.value = call.arguments;
       case 'receivedPayload':
-        receivePayload.value = call.arguments;
-        return null;
+        return receivePayload.value = call.arguments;
       case 'openNotification':
-        openNotification.value = call.arguments;
-        return null;
+        return openNotification.value = call.arguments;
       case 'handleLandingURL':
-        openLandingURL.value = call.arguments;
-        return null;
-
-      case 'onIosSettingsRegistered':
-        final obj = IosNotificationSettings._fromMap(
-            call.arguments.cast<String, bool>());
-
-        isDisabledByUser.value = obj?.alert == false;
-        return null;
+       return openLandingURL.value = call.arguments;
       case 'onMessage':
         return _onMessage(call.arguments.cast<String, dynamic>());
       case 'onLaunch':
@@ -85,7 +61,7 @@ class iZootoiOS extends PushConnector {
   final receivePayload = ValueNotifier<String>(null);
 
   @override
-  final openNotification = ValueNotifier<String>(null);
+  final openNotification = ValueNotifier<String>("HandleData");
 
   @override
   final openLandingURL = ValueNotifier<String>(null);
@@ -93,113 +69,16 @@ class iZootoiOS extends PushConnector {
   @override
   String get providerType => "APNS";
 
-  @override
-  void dispose() {
-    _iosSettingsStreamController.close();
-    super.dispose();
-  }
-  Future<void> setNotificationCategories(
-      List<UNNotificationCategory> categories) {
-    return _channel.invokeMethod(
-      'setNotificationCategories',
-      categories.map((e) => e.toJson()).toList(),
-    );
-  }
 
-  @override
-  Future<void> unregister() async {
-    await _channel.invokeMethod('unregister');
-    token.value = null;
-  }
 
-// @override
-// ValueNotifier<String> get receivepayload => throw UnimplementedError();
+
+
+
+
 }
 
-class IosNotificationSettings {
-  const IosNotificationSettings({
-    this.sound = true,
-    this.alert = true,
-    this.badge = true,
-  });
 
-  IosNotificationSettings._fromMap(Map<String, bool> settings)
-      : sound = settings['sound'],
-        alert = settings['alert'],
-        badge = settings['badge'];
 
-  final bool sound;
-  final bool alert;
-  final bool badge;
 
-  Map<String, dynamic> toMap() {
-    return <String, bool>{'sound': sound, 'alert': alert, 'badge': badge};
-  }
 
-  @override
-  String toString() => 'PushNotificationSettings ${toMap()}';
-}
 
-class UNNotificationCategory {
-  final String identifier;
-  final List<UNNotificationAction> actions;
-  final List<String> intentIdentifiers;
-  final List<UNNotificationCategoryOptions> options;
-
-  Map<String, dynamic> toJson() {
-    return {
-      'identifier': identifier,
-      'actions': actions.map((e) => e.toJson()).toList(),
-      'intentIdentifiers': intentIdentifiers,
-      'options': _optionsToJson(options),
-    };
-  }
-
-  UNNotificationCategory({
-    @required this.identifier,
-    @required this.actions,
-    @required this.intentIdentifiers,
-    @required this.options,
-  });
-}
-class UNNotificationAction {
-  final String identifier;
-  final String title;
-  final List<UNNotificationActionOptions> options;
-
-  static const defaultIdentifier =
-      'com.apple.UNNotificationDefaultActionIdentifier';
-  static String getIdentifier(Map<String, dynamic> payload) {
-    return payload['aps']['actionIdentifier'];
-  }
-
-  UNNotificationAction({
-    @required this.identifier,
-    @required this.title,
-    @required this.options,
-  });
-
-  dynamic toJson() {
-    return {
-      'identifier': identifier,
-      'title': title,
-      'options': _optionsToJson(options),
-    };
-  }
-}
-enum UNNotificationActionOptions {
-  authenticationRequired,
-  destructive,
-  foreground,
-}
-enum UNNotificationCategoryOptions {
-  customDismissAction,
-  allowInCarPlay,
-  hiddenPreviewsShowTitle,
-  hiddenPreviewsShowSubtitle,
-  allowAnnouncement,
-}
-
-List<String> _optionsToJson(List values) {
-  return values.map((e) => e.toString()).toList();
-}

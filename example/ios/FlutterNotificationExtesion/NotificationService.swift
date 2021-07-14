@@ -17,7 +17,7 @@ class NotificationService: UNNotificationServiceExtension {
           self.contentHandler = contentHandler
           bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
           if let bestAttemptContent = bestAttemptContent {
-          iZooto.didReceiveNotificationExtensionRequest(request: receivedRequest, bestAttemptContent: bestAttemptContent,contentHandler: contentHandler)
+            iZooto.didReceiveNotificationExtensionRequest(bundleName: "com.izootoPlugin", request: receivedRequest, bestAttemptContent: bestAttemptContent,contentHandler: contentHandler)
            
         }
         }

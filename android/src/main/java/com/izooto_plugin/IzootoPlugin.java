@@ -10,12 +10,17 @@ import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.izooto.NotificationHelperListener;
+import com.izooto.NotificationReceiveHybridListener;
 import com.izooto.NotificationWebViewListener;
 import com.izooto.Payload;
 import com.izooto.TokenReceivedListener;
 import com.izooto.iZooto;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,8 +34,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
     @SuppressLint("StaticFieldLeak")
     static Context context;
     MethodChannel channel;
-    private String notificationOpenedData, notificationToken, notificationWebView;
-    private Payload notificationPayload;
+    private String notificationOpenedData, notificationToken, notificationWebView,notificationPayload;
 
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
@@ -53,7 +57,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                         .setTokenReceivedListener(iZootoNotificationListener)
                         .setNotificationReceiveListener(iZootoNotificationListener)
                         .setLandingURLListener(iZootoNotificationListener)
-                        .unsubscribeWhenNotificationsAreDisabled(true)
+                        .setNotificationReceiveHybridListener(iZootoNotificationListener)
                         .build();
                 break;
             case iZootoConstant.SETSUBSCRIPTION:
@@ -81,6 +85,16 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 hashMapUserProperty = (HashMap<String, Object>) call.arguments;
                 iZooto.addUserProperty(hashMapUserProperty);
                 break;
+            case iZootoConstant.Notification_SOUND:
+                try {
+                    String soundName = (String) call.arguments;
+                    iZooto.setNotificationSound(soundName);
+                    Log.e("SoundName",soundName);
+                }catch (Exception ex)
+                {
+                    Log.v("Handle",ex.toString());
+                }
+                break;
             case iZootoConstant.ADDTAGS: {
                 List<String> addTagList = new ArrayList<>();
                 addTagList = (List<String>) call.arguments;
@@ -103,7 +117,8 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 setNotificationBehaviour(notificationBehaviour);
                 break;
             case iZootoConstant.iZOOTO_RECEIVED_PAYLOAD:
-                iZootoNotificationListener.onNotificationReceived(notificationPayload);
+                iZootoNotificationListener.onNotificationReceivedHybrid(notificationPayload);
+                iZooto.notificationReceivedCallback(iZootoNotificationListener);
                 break;
             case iZootoConstant.iZOOTO_OPEN_NOTIFICATION:
                 iZootoNotificationListener.onNotificationOpened(notificationOpenedData);
@@ -117,25 +132,26 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 iZooto.notificationWebView(iZootoNotificationListener);
                 break;
             default:
+
                  result.notImplemented();
                 break;
         }
     }
 
-    private class iZootoNotificationListener implements TokenReceivedListener, NotificationHelperListener, NotificationWebViewListener {
+    private class iZootoNotificationListener implements TokenReceivedListener, NotificationHelperListener, NotificationWebViewListener ,NotificationReceiveHybridListener{
         @Override
         public void onNotificationReceived(Payload payload) {
-            notificationPayload = payload;
-
-            if (payload!=null) {
-                Gson gson = new Gson();
-                String jsonPayload = gson.toJson(payload);
-                try {
-                    invokeMethodOnUiThread(iZootoConstant.iZOOTO_RECEIVED_PAYLOAD, jsonPayload);
-                } catch (Exception e) {
-                    e.getStackTrace();
-                }
-            }
+//            notificationPayload = payload;
+//
+//            if (payload!=null) {
+//                Gson gson = new Gson();
+//                String jsonPayload = gson.toJson(payload);
+//                try {
+//                    invokeMethodOnUiThread(iZootoConstant.iZOOTO_RECEIVED_PAYLOAD, jsonPayload);
+//                } catch (Exception e) {
+//                    e.getStackTrace();
+//                }
+//            }
 
         }
 
@@ -173,6 +189,24 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                     e.getStackTrace();
                 }
             }
+        }
+
+        @Override
+        public void onNotificationReceivedHybrid(String receiveData) {
+            notificationPayload = receiveData;
+            if (receiveData!=null) {
+                try {
+                    JSONArray listArray = new JSONArray(receiveData);
+                    JSONArray reverseList = new JSONArray();
+                    for (int i = listArray.length()-1; i>=0; i--) {
+                        reverseList.put(listArray.getJSONObject(i));
+                    }
+                    invokeMethodOnUiThread(iZootoConstant.iZOOTO_RECEIVED_PAYLOAD, reverseList.toString());
+                } catch (Exception e) {
+                    e.getStackTrace();
+                }
+            }
+
         }
     }
 

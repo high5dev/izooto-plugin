@@ -2,46 +2,46 @@ import Flutter
 import UIKit
 import iZootoiOSSDK
 import UserNotifications
-
-public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenterDelegate, iZootoNotificationReceiveDelegate, iZootoNotificationOpenDelegate, iZootoLandingURLDelegate {
-    public func onNotificationOpen(action: Dictionary<String, Any>) {
-      let jsonData = try! JSONSerialization.data(withJSONObject: action, options: [])
-        let decoded = String(data: jsonData, encoding: .utf8)!
-        channel.invokeMethod("openNotification", arguments: decoded)
-    }
+@objc public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenterDelegate, iZootoNotificationOpenDelegate, iZootoLandingURLDelegate {
     
-    public func onHandleLandingURL(url: String) {
-        channel.invokeMethod("handleLandingURL", arguments: url)
-    }
-    
-    public func onNotificationReceived(payload: Payload) {
-
-    }
-    
-    var launchNotification: [String: Any]?
-    var resumingFromBackground = false
-
-    static var loggingEnabled = false
-
-    var channel = FlutterMethodChannel()
-        
+    static var data = "";
+   
     internal init(channel: FlutterMethodChannel) {
            self.channel = channel
        }
     
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "izooto_flutter", binaryMessenger: registrar.messenger())
+   
+
     let instance = SwiftIzootoPlugin(channel: channel)
     registrar.addApplicationDelegate(instance)
-
     registrar.addMethodCallDelegate(instance, channel: channel)
-
     let center = UNUserNotificationCenter.current()
            center.delegate = instance
-      UNUserNotificationCenter.current().delegate = instance
+    
 
   }
-
+    public func onNotificationOpen(action: Dictionary<String, Any>) {
+                    let jsonData = try! JSONSerialization.data(withJSONObject: action, options: [])
+              let decoded = String(data: jsonData, encoding: .utf8)!
+            self.channel.invokeMethod("openNotification", arguments: decoded)
+        
+       
+              
+    }
+    
+    public func onHandleLandingURL(url: String) {
+        self.channel.invokeMethod("handleLandingURL", arguments: url)
+    }
+    
+//    public func onNotificationReceived(payload: Payload) {
+//
+//    }
+    var channel = FlutterMethodChannel()
+    var launchNotification: [String: Any]?
+    var resumingFromBackground = false
+    static var loggingEnabled = false
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     
     switch (call.method) {
@@ -50,12 +50,11 @@ public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenter
         let map = call.arguments as? Dictionary<String, String>
         let appId = map?["appId"]
         let iZootoInitSettings = ["auto_prompt": true,"nativeWebview": true,"provisionalAuthorization":false]
-        UNUserNotificationCenter.current().delegate = self
         iZooto.initialisation(izooto_id: appId!, application: UIApplication.shared,  iZootoInitSettings:iZootoInitSettings)
-        iZooto.notificationReceivedDelegate = self
         iZooto.notificationOpenDelegate = self
         iZooto.landingURLDelegate = self
-        
+        UNUserNotificationCenter.current().delegate = self
+
         break;
    
      case "getPlatformVersion":
@@ -69,6 +68,7 @@ public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenter
        break;
     case "addUserProperties":
         let userPropertiesData = call.arguments as? Dictionary<String, String>
+       // print(userPropertiesData)
         let keyName = userPropertiesData?["key"]
         let valueName = userPropertiesData?["value"]
         let data = [keyName: valueName] as? [String : String]
@@ -84,18 +84,33 @@ public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenter
         break;
     }
     
-    
-    
-    
   }
-    
+   
+    // appDelegate integration
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable : Any] = [:]) -> Bool {
-            launchNotification = launchOptions[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any]
+      
+           
+        
+        
+        launchNotification = launchOptions[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any]
+       // let controller : FlutterViewController =
+//        if launchOptions[UIApplication.LaunchOptionsKey.remoteNotification] != nil {
+//         //   let channel = FlutterMethodChannel(name: "izooto_flutter", binaryMessenger: registrar.messenger())
+//
+//
+//            //channel.invokeMethod("openNotification", arguments: "decoded")
+//
+////            let alert = UIAlertController(title: "Did you bring your towel?", message: "\("decoded")", preferredStyle: .alert)
+////
+////            UIApplication.shared.keyWindow!.rootViewController!.present(alert, animated: true, completion: nil)
+//        }
+      
             return true
         }
         
         public func applicationDidEnterBackground(_ application: UIApplication) {
             resumingFromBackground = true
+
         }
         
         public func applicationDidBecomeActive(_ application: UIApplication) {
@@ -103,29 +118,30 @@ public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenter
             application.applicationIconBadgeNumber = 1
             application.applicationIconBadgeNumber = 0
         }
-        
+        //handle token
         public func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
             iZooto.getToken(deviceToken: deviceToken)
             let tokenParts = deviceToken.map { data -> String in
                          return String(format: "%02.2hhx", data)
                      }
             let token = tokenParts.joined()
-            channel.invokeMethod("onToken", arguments: token)
+           // print(token)
+                // channel.invokeMethod("onToken", arguments: token)
+            channel.invokeMethod("iZootoNotificationToken", arguments: token)
         }
         
         
         public func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) -> Bool {
-            
+//
 //            if resumingFromBackground {
 //                onResume(userInfo: userInfo)
 //            } else {
 //                channel.invokeMethod("onMessage", arguments: userInfo)
 //            }
-//
-            completionHandler(.noData)
+//            completionHandler(.newData)
             return true
         }
-        
+        // called forground
         public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
             let userInfo = notification.request.content.userInfo
             let jsonData = try! JSONSerialization.data(withJSONObject: userInfo, options: [])
@@ -133,22 +149,25 @@ public class SwiftIzootoPlugin: NSObject, FlutterPlugin,UNUserNotificationCenter
             channel.invokeMethod("receivedPayload", arguments: decoded)
             completionHandler([.alert])
         }
-        
+        // called background
         public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-            iZooto.notificationHandler(response: response)
-            print("click")
+            let userInfo = response.notification.request.content.userInfo
+            let jsonData = try! JSONSerialization.data(withJSONObject: userInfo, options: [])
+              let decoded = String(data: jsonData, encoding: .utf8)!
+             channel.invokeMethod("receivedPayload", arguments: decoded);            iZooto.notificationHandler(response: response)
+            
             completionHandler()
         }
-        
-//        func onResume(userInfo: [AnyHashable: Any]) {
-//            if let launchNotification = launchNotification {
-//                channel.invokeMethod("onLaunch", arguments: userInfo)
-//                self.launchNotification = nil
-//                return
-//            }
-//
-//            channel.invokeMethod("onResume", arguments: userInfo)
-//        }
-   
-   
+ 
+        func onResume(userInfo: [AnyHashable: Any]) {
+            if launchNotification != nil {
+                channel.invokeMethod("onResume", arguments: userInfo)
+                self.launchNotification = nil
+                return
+            }
+           // iZooto.notificationOpenDelegate=self
+            channel.invokeMethod("onResume", arguments: userInfo)
+        }
+    
+  
 }

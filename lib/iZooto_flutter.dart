@@ -1,31 +1,29 @@
 
 import 'dart:async';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:izooto_plugin/src/Payload.dart';
 export 'package:izooto_plugin/src/iZootoConnection.dart';
 export 'package:izooto_plugin/iZooto_apns.dart';
-
 enum OSInAppDisplayOption { None, InAppAlert, Notification }
-typedef void ReceiveNotificationParam(Payload payload);
+typedef void ReceiveNotificationParam(String payload);
 typedef void OpenedNotificationParam(String data);
 typedef void TokenNotificationParam(String token);
 typedef void WebViewNotificationParam(String landingUrl);
 
-class iZooto{
-
+class iZooto {
+  static iZooto shared = new iZooto();
   static const MethodChannel _channel = const MethodChannel('izooto_flutter');
   static ReceiveNotificationParam notificationReceiveData;
   static OpenedNotificationParam notificationOpenedData;
   static TokenNotificationParam notificationToken;
   static WebViewNotificationParam notificationWebView;
-
   iZooto() {
-    _channel.setMethodCallHandler(handleOverrideMethod);
+      _channel.setMethodCallHandler(handleOverrideMethod);
+     // _channel.setMethodCallHandler(handleMethod);
   }
+
  // for integration ios
-
-
   static Future<void> iOSInit({
     @required String appId}) async {
     await _channel.invokeMethod('iOSInit', {
@@ -42,9 +40,10 @@ class iZooto{
   static setSubscription(bool enable) async {
     _channel.invokeMethod('iZootoSetSubscription', {'enable': enable});
   }
+
   static Future<String> receiveToken() async
   {
-    final String receiveToken = await _channel.invokeMethod('receiveToken');
+    final String receiveToken = await _channel.invokeMethod('onToken');
     return receiveToken;
   }
   static Future<String> receivePayload() async
@@ -54,7 +53,7 @@ class iZooto{
   }
   static Future<String> receiveOpenData() async
   {
-    final String receiveOpenData = await _channel.invokeMethod('receiveOpenData');
+    final String receiveOpenData = await _channel.invokeMethod('openNotification');
     return receiveOpenData;
   }
   static Future<String> receiveLandingURL() async
@@ -70,6 +69,9 @@ class iZooto{
   }
   static Future<void> setFirebaseAnalytics(bool enable) async {
     await _channel.invokeMethod('iZootoFirebaseAnalytics', enable);
+  }
+  static Future<void> setNotificationSound(String soundName) async {
+    await _channel.invokeMethod('notificationSound', soundName);
   }
   static Future<void> addEvent(String eventName,
       Map<String, Object> eventValue) async {
@@ -98,34 +100,36 @@ class iZooto{
         {'iZootoInAppNotificationBehaviour': option.index});
   }
 
-  static onNotificationReceived(ReceiveNotificationParam payload) {
+  void onNotificationReceived(ReceiveNotificationParam payload) {
     notificationReceiveData = payload;
     _channel.invokeMethod('receivedPayload');
   }
 
-  static onNotificationOpened(OpenedNotificationParam data) {
+  void onNotificationOpened(OpenedNotificationParam data) {
     notificationOpenedData = data;
     _channel.invokeMethod('openNotification');
   }
 
-  static onTokenReceived(TokenNotificationParam token) {
+  void onTokenReceived(TokenNotificationParam token) {
     notificationToken = token;
-    _channel.invokeMethod('izooto_Notification_Token');
+    _channel.invokeMethod('onToken');
   }
 
-  static onWebView(WebViewNotificationParam landingUrl) {
+  void onWebView(WebViewNotificationParam landingUrl) {
     notificationWebView = landingUrl;
     _channel.invokeMethod('handleLandingURL');
   }
 
+
   Future<Null> handleOverrideMethod(MethodCall methodCall) async {
     if (methodCall.method == 'receivedPayload' &&
         notificationReceiveData != null) {
-      notificationReceiveData(Payload(methodCall.arguments));
+
+      notificationReceiveData(methodCall.arguments);
     } else if (methodCall.method == 'openNotification' &&
         notificationOpenedData != null) {
       notificationOpenedData(methodCall.arguments);
-    } else if (methodCall.method == 'iZootoNotificationToken' &&
+    } else if (methodCall.method == 'onToken' &&
         notificationToken != null) {
       notificationToken(methodCall.arguments);
     } else if (methodCall.method == 'handleLandingURL' &&
@@ -133,4 +137,10 @@ class iZooto{
       notificationWebView(methodCall.arguments);
     }
   }
+
+
+
+
+
+
 }

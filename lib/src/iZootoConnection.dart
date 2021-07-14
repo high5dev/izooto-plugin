@@ -15,7 +15,5 @@ abstract class PushConnector {
     MessageHandler onResume,
     MessageHandler onBackgroundMessage,
   });
-  void requestNotificationPermissions();
-  Future<void> unregister();
-  void dispose() {}
+
 }
