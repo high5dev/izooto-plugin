@@ -102,7 +102,6 @@ class _HomeState extends State<Home>  {
          //   _showPasswordDialog(data);
             print(data);
       });
-      iZooto.setNotificationSound("abc");
       iZooto.shared.onWebView((landingUrl) {
       //  _showPasswordDialog(landingUrl);
         print(landingUrl);

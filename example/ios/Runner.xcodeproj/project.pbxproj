@@ -8,16 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
-		27DA0192C2DE53A9F484846A /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62BF314B48ABED9372DDC803 /* Pods_Runner.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		2863252F25D1448900A2C55A /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		1B9DC7856C1ADDD934A7B0F1 /* Pods_FlutterNotificationExtesion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9429BDE80CAF181CC29F1DAD /* Pods_FlutterNotificationExtesion.framework */; };
 		287B276525CC024200817FB0 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287B276425CC024200817FB0 /* NotificationService.swift */; };
 		287B276925CC024200817FB0 /* FlutterNotificationExtesion.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 287B276225CC024200817FB0 /* FlutterNotificationExtesion.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
-		7441F1AF74512F42C945CB50 /* Pods_FlutterNotificationExtesion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B517F58954597B6314D238 /* Pods_FlutterNotificationExtesion.framework */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		A4EF0F9EFA8287C0C968F38B /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 015BA43CADFF5DB8C1EF0886 /* Pods_Runner.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,17 +30,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		2863253025D1448900A2C55A /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				2863252F25D1448900A2C55A /* (null) in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		287B275B25CC01E300817FB0 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -56,25 +44,27 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		04BD975527F0604BC3DD3022 /* Pods-FlutterNotificationExtesion.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterNotificationExtesion.profile.xcconfig"; path = "Target Support Files/Pods-FlutterNotificationExtesion/Pods-FlutterNotificationExtesion.profile.xcconfig"; sourceTree = "<group>"; };
+		015BA43CADFF5DB8C1EF0886 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		01ED4A56DE4A07C33BD440D9 /* Pods-FlutterNotificationExtesion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterNotificationExtesion.debug.xcconfig"; path = "Target Support Files/Pods-FlutterNotificationExtesion/Pods-FlutterNotificationExtesion.debug.xcconfig"; sourceTree = "<group>"; };
+		02BE8D3EE0C84F76FB26A5EC /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
-		16B517F58954597B6314D238 /* Pods_FlutterNotificationExtesion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlutterNotificationExtesion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		284BF9AA25D1221C0068549D /* FlutterNotificationExtesion.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlutterNotificationExtesion.entitlements; sourceTree = "<group>"; };
 		287B274925CC01E200817FB0 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		287B274B25CC01E200817FB0 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		287B276225CC024200817FB0 /* FlutterNotificationExtesion.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FlutterNotificationExtesion.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		287B276425CC024200817FB0 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		287B276625CC024200817FB0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		28D024FF269F2562001C5D2B /* RunnerDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RunnerDebug.entitlements; sourceTree = "<group>"; };
+		28D02500269F25A6001C5D2B /* FlutterNotificationExtesionDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlutterNotificationExtesionDebug.entitlements; sourceTree = "<group>"; };
 		28E0A38D25CAC74300D3F0C6 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
-		2FC859204B852C48FE9486D9 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
-		62BF314B48ABED9372DDC803 /* Pods_Runner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Runner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A0D53B8E3D2186C452FFD09 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
+		5F44870C8C3761DBA26D00D0 /* Pods-FlutterNotificationExtesion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterNotificationExtesion.release.xcconfig"; path = "Target Support Files/Pods-FlutterNotificationExtesion/Pods-FlutterNotificationExtesion.release.xcconfig"; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
 		74858FAE1ED2DC5600515810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7AFA3C8E1D35360C0083082E /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Release.xcconfig; path = Flutter/Release.xcconfig; sourceTree = "<group>"; };
-		802FBDDF724A662EEB7873C5 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
-		8A75B340F2D0860FBD8524E6 /* Pods-FlutterNotificationExtesion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterNotificationExtesion.release.xcconfig"; path = "Target Support Files/Pods-FlutterNotificationExtesion/Pods-FlutterNotificationExtesion.release.xcconfig"; sourceTree = "<group>"; };
+		9429BDE80CAF181CC29F1DAD /* Pods_FlutterNotificationExtesion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlutterNotificationExtesion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9740EEB21CF90195004384FC /* Debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Debug.xcconfig; path = Flutter/Debug.xcconfig; sourceTree = "<group>"; };
 		9740EEB31CF90195004384FC /* Generated.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = Generated.xcconfig; path = Flutter/Generated.xcconfig; sourceTree = "<group>"; };
 		97C146EE1CF9000F007C117D /* Runner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Runner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,8 +72,8 @@
 		97C146FD1CF9000F007C117D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A205D19CA75CECBBEAFA4634 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
-		E1EE8DE992C83DC83AFB922A /* Pods-FlutterNotificationExtesion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterNotificationExtesion.debug.xcconfig"; path = "Target Support Files/Pods-FlutterNotificationExtesion/Pods-FlutterNotificationExtesion.debug.xcconfig"; sourceTree = "<group>"; };
+		9ACF8FE38EFD43401C598741 /* Pods-FlutterNotificationExtesion.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlutterNotificationExtesion.profile.xcconfig"; path = "Target Support Files/Pods-FlutterNotificationExtesion/Pods-FlutterNotificationExtesion.profile.xcconfig"; sourceTree = "<group>"; };
+		EEC74AF22E89FB4781DD7370 /* Pods-Runner.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.profile.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.profile.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7441F1AF74512F42C945CB50 /* Pods_FlutterNotificationExtesion.framework in Frameworks */,
+				1B9DC7856C1ADDD934A7B0F1 /* Pods_FlutterNotificationExtesion.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27DA0192C2DE53A9F484846A /* Pods_Runner.framework in Frameworks */,
+				A4EF0F9EFA8287C0C968F38B /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +99,7 @@
 		287B276325CC024200817FB0 /* FlutterNotificationExtesion */ = {
 			isa = PBXGroup;
 			children = (
+				28D02500269F25A6001C5D2B /* FlutterNotificationExtesionDebug.entitlements */,
 				284BF9AA25D1221C0068549D /* FlutterNotificationExtesion.entitlements */,
 				287B276425CC024200817FB0 /* NotificationService.swift */,
 				287B276625CC024200817FB0 /* Info.plist */,
@@ -121,8 +112,8 @@
 			children = (
 				287B274925CC01E200817FB0 /* UserNotifications.framework */,
 				287B274B25CC01E200817FB0 /* UserNotificationsUI.framework */,
-				16B517F58954597B6314D238 /* Pods_FlutterNotificationExtesion.framework */,
-				62BF314B48ABED9372DDC803 /* Pods_Runner.framework */,
+				9429BDE80CAF181CC29F1DAD /* Pods_FlutterNotificationExtesion.framework */,
+				015BA43CADFF5DB8C1EF0886 /* Pods_Runner.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -130,12 +121,12 @@
 		6E1F285677C0CFA53DC5AEC0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E1EE8DE992C83DC83AFB922A /* Pods-FlutterNotificationExtesion.debug.xcconfig */,
-				8A75B340F2D0860FBD8524E6 /* Pods-FlutterNotificationExtesion.release.xcconfig */,
-				04BD975527F0604BC3DD3022 /* Pods-FlutterNotificationExtesion.profile.xcconfig */,
-				A205D19CA75CECBBEAFA4634 /* Pods-Runner.debug.xcconfig */,
-				802FBDDF724A662EEB7873C5 /* Pods-Runner.release.xcconfig */,
-				2FC859204B852C48FE9486D9 /* Pods-Runner.profile.xcconfig */,
+				01ED4A56DE4A07C33BD440D9 /* Pods-FlutterNotificationExtesion.debug.xcconfig */,
+				5F44870C8C3761DBA26D00D0 /* Pods-FlutterNotificationExtesion.release.xcconfig */,
+				9ACF8FE38EFD43401C598741 /* Pods-FlutterNotificationExtesion.profile.xcconfig */,
+				5A0D53B8E3D2186C452FFD09 /* Pods-Runner.debug.xcconfig */,
+				02BE8D3EE0C84F76FB26A5EC /* Pods-Runner.release.xcconfig */,
+				EEC74AF22E89FB4781DD7370 /* Pods-Runner.profile.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -175,6 +166,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				28D024FF269F2562001C5D2B /* RunnerDebug.entitlements */,
 				28E0A38D25CAC74300D3F0C6 /* Runner.entitlements */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
@@ -195,11 +187,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 287B276A25CC024300817FB0 /* Build configuration list for PBXNativeTarget "FlutterNotificationExtesion" */;
 			buildPhases = (
-				C70A2FC4DEEC41032B092224 /* [CP] Check Pods Manifest.lock */,
+				8746086ED58C11323B210E58 /* [CP] Check Pods Manifest.lock */,
 				287B275E25CC024200817FB0 /* Sources */,
 				287B275F25CC024200817FB0 /* Frameworks */,
 				287B276025CC024200817FB0 /* Resources */,
-				2863253025D1448900A2C55A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,14 +205,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
-				966AC2DB0AE1B905E79CF346 /* [CP] Check Pods Manifest.lock */,
+				F7F7652D2CA8399C69AEB901 /* [CP] Check Pods Manifest.lock */,
 				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				287B275B25CC01E300817FB0 /* Embed App Extensions */,
-				3C153BA6FC77129984A44707 /* [CP] Embed Pods Frameworks */,
+				6A39D65FF2AB4679510D473E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -307,7 +298,7 @@
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" embed_and_thin\n";
 		};
-		3C153BA6FC77129984A44707 /* [CP] Embed Pods Frameworks */ = {
+		6A39D65FF2AB4679510D473E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -324,7 +315,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		966AC2DB0AE1B905E79CF346 /* [CP] Check Pods Manifest.lock */ = {
+		8746086ED58C11323B210E58 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -339,7 +330,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-FlutterNotificationExtesion-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -360,7 +351,7 @@
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n";
 		};
-		C70A2FC4DEEC41032B092224 /* [CP] Check Pods Manifest.lock */ = {
+		F7F7652D2CA8399C69AEB901 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,7 +366,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FlutterNotificationExtesion-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Runner-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -510,6 +501,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.izootoPlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = FlutterPLuginExample;
@@ -521,7 +513,7 @@
 		};
 		287B276B25CC024300817FB0 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E1EE8DE992C83DC83AFB922A /* Pods-FlutterNotificationExtesion.debug.xcconfig */;
+			baseConfigurationReference = 01ED4A56DE4A07C33BD440D9 /* Pods-FlutterNotificationExtesion.debug.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -529,7 +521,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = FlutterNotificationExtesion/FlutterNotificationExtesion.entitlements;
+				CODE_SIGN_ENTITLEMENTS = FlutterNotificationExtesion/FlutterNotificationExtesionDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = N2T2473XHF;
@@ -544,6 +536,7 @@
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.izootoPlugin.FlutterNotificationExtesion;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -556,7 +549,7 @@
 		};
 		287B276C25CC024300817FB0 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A75B340F2D0860FBD8524E6 /* Pods-FlutterNotificationExtesion.release.xcconfig */;
+			baseConfigurationReference = 5F44870C8C3761DBA26D00D0 /* Pods-FlutterNotificationExtesion.release.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -588,7 +581,7 @@
 		};
 		287B276D25CC024300817FB0 /* Profile */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 04BD975527F0604BC3DD3022 /* Pods-FlutterNotificationExtesion.profile.xcconfig */;
+			baseConfigurationReference = 9ACF8FE38EFD43401C598741 /* Pods-FlutterNotificationExtesion.profile.xcconfig */;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -734,9 +727,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_ENTITLEMENTS = Runner/RunnerDebug.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
 				DEVELOPMENT_TEAM = N2T2473XHF;
 				ENABLE_BITCODE = NO;
@@ -754,9 +747,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.izootoPlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = FlutterPLuginExample;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -791,6 +785,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.izootoPlugin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = FlutterPLuginExample;

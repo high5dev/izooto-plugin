@@ -132,7 +132,6 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 iZooto.notificationWebView(iZootoNotificationListener);
                 break;
             default:
-
                  result.notImplemented();
                 break;
         }
