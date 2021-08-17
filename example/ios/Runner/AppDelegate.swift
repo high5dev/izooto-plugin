@@ -9,7 +9,7 @@ import iZootoiOSSDK
         let jsonData = try! JSONSerialization.data(withJSONObject: action, options: [])
   let decoded = String(data: jsonData, encoding: .utf8)!
         let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
-        let CHANNEL = FlutterMethodChannel(name: "izooto-flutter", binaryMessenger: controller as! FlutterBinaryMessenger)
+        let CHANNEL = FlutterMethodChannel(name: "iZooto-flutter", binaryMessenger: controller as! FlutterBinaryMessenger)
         CHANNEL.setMethodCallHandler{[unowned self](methodcall,result) in
             if(methodcall.method == "OpenNotification")
             {

@@ -35,11 +35,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home>  {
-  static const platform =const MethodChannel("izooto-flutter");
-
-  String _Tag='iZooto Flutter Plugin ->';
-  PushConnector connector = createPushConnector();
-
+  static const platform =const MethodChannel("iZooto-flutter");
   @override
   void initState() {
     super.initState();
@@ -98,56 +94,43 @@ class _HomeState extends State<Home>  {
       iZooto.androidInit(); // for Android
       iZooto.iOSInit(
           appId: "5f2f1dabe93b9f2329ead1bad063ec6ab6504766"); // for iOS
+
+     // DeepLink Android/iOS
       iZooto.shared.onNotificationOpened((data) {
-         //   _showPasswordDialog(data);
-            print(data);
+            print('iZooto DeepLink Datadata : $data');
       });
+      // LandingURLDelegate Android/iOS
       iZooto.shared.onWebView((landingUrl) {
-      //  _showPasswordDialog(landingUrl);
         print(landingUrl);
+        print('iZooto Landing URL  : $landingUrl');
+
       });
+
+     // Received paylaod Android/iOS
       iZooto.shared.onNotificationReceived((payload) {
-       // _showPasswordDialog(payload);
+        print('iZooto Flutter Paylaod : $payload ');
+
         List<dynamic> list = json.decode(payload);
         print(list.toString());
-        List<String> reversedAnimals = list.reversed.toList();
+        List<String> receivedpayload = list.reversed.toList();
 
-        print(reversedAnimals);
+        print(receivedpayload);
       });
+      // Device token Android/iOS
       iZooto.shared.onTokenReceived((token) {
-        print('Flutter : $token ');
+        print('iZooto Flutter Token : $token ');
       });
+      //iOS DeepLink Killed state code
+      try {
+        String value = await platform.invokeMethod("OpenNotification");
+        if (value != null) {
+          print('iZooto Killed state ios data : $value ');
+
+          Navigator.of(context).pushNamed('pageTwo');
+        }
+      } catch(Exception) {}
 
 
-      // final connector = this.connector;
-      // connector.configure(
-      //
-      //     onLaunch: (data) => onPush('onLaunch', data),
-      //   onResume: (data) => onPush('onResume', data),
-      //   onMessage: (data) => onPush('onMessage', data),
-      //   onBackgroundMessage: _onBackgroundMessage,
-      // );
-      // try {
-      //   String value = await platform.invokeMethod("OpenNotification");
-      //   if (value != null) {
-      //     _showPasswordDialog(value);
-      //     Navigator.of(context).pushNamed('pageTwo');
-      //   }
-      // }catch(Exception){}
-      // connector.token.addListener(() {
-      //   print(_Tag + 'Token : ${connector.token.value}');
-      // });
-      // connector.receivePayload.addListener(() {
-      //   print(_Tag + ' Payload : ${connector.receivePayload.value}');
-      // });
-      // connector.openNotification.addListener(() {
-      //   Navigator.of(context).pushNamed('pageTwo');
-      //   print(_Tag + 'Notification Tap : ${connector.openNotification.value}');
-      // });
-      // connector.openLandingURL.addListener(() {
-      //   Navigator.of(context).pushNamed('pageTwo');
-      //   print(_Tag + 'Landing URL : ${connector.openLandingURL.value}');
-      // });
 
     }
 

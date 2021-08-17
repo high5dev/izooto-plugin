@@ -26,8 +26,6 @@ import UserNotifications
                     let jsonData = try! JSONSerialization.data(withJSONObject: action, options: [])
               let decoded = String(data: jsonData, encoding: .utf8)!
             self.channel.invokeMethod("openNotification", arguments: decoded)
-        
-       
               
     }
     
@@ -89,20 +87,8 @@ import UserNotifications
     // appDelegate integration
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable : Any] = [:]) -> Bool {
       
-           
-        
-        
         launchNotification = launchOptions[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any]
-       // let controller : FlutterViewController =
-//        if launchOptions[UIApplication.LaunchOptionsKey.remoteNotification] != nil {
-//         //   let channel = FlutterMethodChannel(name: "izooto_flutter", binaryMessenger: registrar.messenger())
-//
-//
-//            //channel.invokeMethod("openNotification", arguments: "decoded")
-//
-////            let alert = UIAlertController(title: "Did you bring your towel?", message: "\("decoded")", preferredStyle: .alert)
-////
-////            UIApplication.shared.keyWindow!.rootViewController!.present(alert, animated: true, completion: nil)
+      
 //        }
       
             return true
@@ -127,7 +113,7 @@ import UserNotifications
             let token = tokenParts.joined()
            // print(token)
                 // channel.invokeMethod("onToken", arguments: token)
-            channel.invokeMethod("iZootoNotificationToken", arguments: token)
+            channel.invokeMethod("onToken", arguments: token)
         }
         
         
@@ -147,6 +133,7 @@ import UserNotifications
             let jsonData = try! JSONSerialization.data(withJSONObject: userInfo, options: [])
               let decoded = String(data: jsonData, encoding: .utf8)!
             channel.invokeMethod("receivedPayload", arguments: decoded)
+            iZooto.handleForeGroundNotification(notification: notification, displayNotification: "NONE", completionHandler:completionHandler)
             completionHandler([.alert])
         }
         // called background
@@ -154,7 +141,9 @@ import UserNotifications
             let userInfo = response.notification.request.content.userInfo
             let jsonData = try! JSONSerialization.data(withJSONObject: userInfo, options: [])
               let decoded = String(data: jsonData, encoding: .utf8)!
-             channel.invokeMethod("receivedPayload", arguments: decoded);            iZooto.notificationHandler(response: response)
+             channel.invokeMethod("receivedPayload", arguments: decoded);
+            
+            iZooto.notificationHandler(response: response)
             
             completionHandler()
         }

@@ -2,13 +2,13 @@ PODS:
   - Flutter (1.0.0)
   - izooto_plugin (0.0.1):
     - Flutter
-    - iZootoiOSSDK
-  - iZootoiOSSDK (1.1.5)
+    - iZootoiOSSDK (= 1.1.8)
+  - iZootoiOSSDK (1.1.8)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
   - izooto_plugin (from `.symlinks/plugins/izooto_plugin/ios`)
-  - iZootoiOSSDK
+  - iZootoiOSSDK (= 1.1.8)
 
 SPEC REPOS:
   trunk:
@@ -22,9 +22,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  izooto_plugin: eb889f6367e11eacd19c2db5ea748c4fc68823d3
-  iZootoiOSSDK: c185391276899b16c40003d5f3315ed38b27e3ee
+  izooto_plugin: be6630cec6ca346927a408f3cf6314e0488c8019
+  iZootoiOSSDK: 4353b2277459950deb3dfec3480651e1a9b9d72b
 
-PODFILE CHECKSUM: fc521efd81dc28673e5bcf10b6f538398ce535cd
+PODFILE CHECKSUM: fc7904f5d408e12f66386ed12230e2ece5362830
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2
