@@ -33,7 +33,9 @@ target 'Runner' do
 
 end
 target 'FlutteriZootoNotificationSextesnionServices' do
-  pod 'iZootoiOSSDK', '1.1.8'
+      pod 'iZootoiOSSDK', '1.1.8'
+
+
 
 end
 post_install do |installer|

@@ -19,4 +19,7 @@ public interface iZootoConstant {
     String EVENT_VALUE="eventValue";
     String iZOOTO_PLUGIN_NAME="izooto_flutter";
     String Notification_SOUND="notificationSound";
+    String IZOOTO_DEFAULT_TEMPLATE = "izootoDefaultTemplate";
+    String ANDROID_INITIALISE_WITH_TOKEN = "iZootoAndroidInitWithToken";
+    String IZOOTO_DEFAULT_NOTIFICATION_BANNER = "izootoDefaultNotificationBanner";
 }

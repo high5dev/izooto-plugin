@@ -1,6 +1,7 @@
 
+import 'dart:io';
+
 import 'package:flutter/services.dart';
-import 'package:izooto_plugin/iZooto_apns.dart';
 import 'package:izooto_plugin/iZooto_flutter.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -92,9 +93,12 @@ class _HomeState extends State<Home>  {
  */
 
       iZooto.androidInit(); // for Android
-      iZooto.iOSInit(
-          appId: "5f2f1dabe93b9f2329ead1bad063ec6ab6504766"); // for iOS
-
+      iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
+      iZooto.setDefaultNotificationBanner("");
+      if(Platform.isIOS) {
+        iZooto.iOSInit(
+            appId: "5f2f1dabe93b9f2329ead1bad063ec6ab6504766"); // for iOS
+      }
      // DeepLink Android/iOS
       iZooto.shared.onNotificationOpened((data) {
             print('iZooto DeepLink Datadata : $data');

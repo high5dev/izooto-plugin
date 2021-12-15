@@ -3,10 +3,7 @@
 ## 0.0.3 Third release (Bug Fixes -> Platform issue)[16 Feb 2021]
 ## 0.0.4 Third release (Bug Fixes -> Platform issue)[16 April 2021]
 ## 1.1.0 Fourth release(Bug Fixes-> Killed state issue )[17 August 2021]
-* Release
-   * Support Mediation
-   * Support Custom Notification Sound 
-    * Handle the range version sdk
-    * Bug Fixes
+## 1.4.1 Fift release(Bug Fixes-> Killed state issue )[15  December 2021]
+
     
 

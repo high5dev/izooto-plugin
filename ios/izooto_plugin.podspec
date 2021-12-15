@@ -17,7 +17,9 @@ A new Flutter plugin.
  s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   s.platform = :ios, '10.0'
-  s.dependency 'iZootoiOSSDK','1.1.8'
+s.dependency 'iZootoiOSSDK','1.1.8'
+
+
   s.ios.deployment_target = '10.0'
   s.static_framework = true
   # Flutter.framework does not contain a i386 slice.

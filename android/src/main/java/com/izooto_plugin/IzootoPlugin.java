@@ -2,17 +2,20 @@ package com.izooto_plugin;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 
 import com.google.gson.Gson;
 import com.izooto.NotificationHelperListener;
 import com.izooto.NotificationReceiveHybridListener;
 import com.izooto.NotificationWebViewListener;
 import com.izooto.Payload;
+import com.izooto.PushTemplate;
 import com.izooto.TokenReceivedListener;
 import com.izooto.iZooto;
 
@@ -47,6 +50,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
         channel.setMethodCallHandler(null);
     }
 // Handle the all methods
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
         iZootoNotificationListener iZootoNotificationListener = new iZootoNotificationListener();
@@ -80,7 +84,6 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                     iZooto.addEvent(eventName, hashMapEvent);
                 break;
             case iZootoConstant.ADDPROPERTIES:
-
                 HashMap<String, Object> hashMapUserProperty = new HashMap<>();
                 hashMapUserProperty = (HashMap<String, Object>) call.arguments;
                 iZooto.addUserProperty(hashMapUserProperty);
@@ -89,7 +92,6 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 try {
                     String soundName = (String) call.arguments;
                     iZooto.setNotificationSound(soundName);
-                    Log.e("SoundName",soundName);
                 }catch (Exception ex)
                 {
                     Log.v("Handle",ex.toString());
@@ -107,6 +109,15 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 iZooto.removeTag(addTagList);
                 break;
             }
+            case iZootoConstant.IZOOTO_DEFAULT_TEMPLATE:
+                int notificationTemplate = call.argument(iZootoConstant.IZOOTO_DEFAULT_TEMPLATE);
+                setCustomNotification(notificationTemplate);
+                break;
+            case iZootoConstant.IZOOTO_DEFAULT_NOTIFICATION_BANNER:
+                String notificationTemplateBanner = call.argument(iZootoConstant.IZOOTO_DEFAULT_NOTIFICATION_BANNER);
+                if (getBadgeIcon(context, notificationTemplateBanner) != 0)
+                    iZooto.setDefaultNotificationBanner(getBadgeIcon(context, notificationTemplateBanner));
+                break;
             case iZootoConstant.iZOOTO_HANDLE_NOTIFICATION:
                 Object handleNotification = (Object) call.argument(iZootoConstant.iZOOTO_HANDLE_NOTIFICATION);
                 Map<String, String> map = (Map<String, String>) handleNotification;
@@ -140,17 +151,16 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
     private class iZootoNotificationListener implements TokenReceivedListener, NotificationHelperListener, NotificationWebViewListener ,NotificationReceiveHybridListener{
         @Override
         public void onNotificationReceived(Payload payload) {
-//            notificationPayload = payload;
-//
-//            if (payload!=null) {
-//                Gson gson = new Gson();
-//                String jsonPayload = gson.toJson(payload);
-//                try {
-//                    invokeMethodOnUiThread(iZootoConstant.iZOOTO_RECEIVED_PAYLOAD, jsonPayload);
-//                } catch (Exception e) {
-//                    e.getStackTrace();
-//                }
-//            }
+
+            if (payload!=null) {
+                Gson gson = new Gson();
+                String jsonPayload = gson.toJson(payload);
+                try {
+                    invokeMethodOnUiThread(iZootoConstant.iZOOTO_RECEIVED_PAYLOAD, jsonPayload);
+                } catch (Exception e) {
+                    e.getStackTrace();
+                }
+            }
 
         }
 
@@ -171,6 +181,8 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
             notificationToken = token;
             if (token!=null) {
                 try {
+                    Log.e("Token ",notificationToken);
+
                     invokeMethodOnUiThread(iZootoConstant.iZOOTO_DEVICE_TOKEN, token);
                 } catch (Exception e) {
                     e.getStackTrace();
@@ -235,5 +247,31 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
             iZooto.setInAppNotificationBehaviour(iZooto.OSInAppDisplayOption.InAppAlert);
         else
             iZooto.setInAppNotificationBehaviour(iZooto.OSInAppDisplayOption.Notification);
+    }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private static void setCustomNotification(int index) {
+        if (index == 1)
+            iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
+        else
+            iZooto.setDefaultTemplate(PushTemplate.DEFAULT);
+    }
+
+    static int getBadgeIcon(Context context, String setBadgeIcon){
+        int bIicon = 0;
+        int checkExistence = context.getResources().getIdentifier(setBadgeIcon, "drawable", context.getPackageName());
+        if ( checkExistence != 0 ) {  // the resource exists...
+            bIicon = checkExistence;
+        }
+        else {  // checkExistence == 0  // the resource does NOT exist!!
+            int checkExistenceMipmap = context.getResources().getIdentifier(
+                    setBadgeIcon, "mipmap", context.getPackageName());
+            if (checkExistenceMipmap != 0) {  // the resource exists...
+                bIicon = checkExistenceMipmap;
+
+            }
+
+        }
+
+        return bIicon;
     }
 }
