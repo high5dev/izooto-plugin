@@ -42,10 +42,10 @@ enum PushTemplate {DEFAULT, TEXT_OVERLAY}
 class iZooto {
   static iZooto shared = new iZooto();
   static const MethodChannel _channel = const MethodChannel(FLUTTERSDKNAME);
-  static ReceiveNotificationParam notificationReceiveData;
-  static OpenedNotificationParam notificationOpenedData;
-  static TokenNotificationParam notificationToken;
-  static WebViewNotificationParam notificationWebView;
+  static ReceiveNotificationParam? notificationReceiveData;
+  static OpenedNotificationParam? notificationOpenedData;
+  static TokenNotificationParam? notificationToken;
+  static WebViewNotificationParam? notificationWebView;
 
 
   iZooto() {
@@ -55,7 +55,7 @@ class iZooto {
 
  // for integration ios
   static Future<void> iOSInit({
-    @required String appId}) async {
+    @required String? appId}) async {
     await _channel.invokeMethod(iOSINIT, {
       iOSAPPID: appId
     });
@@ -164,16 +164,16 @@ class iZooto {
     if (methodCall.method == RECEIVE_PAYLOAD &&
         notificationReceiveData != null) {
 
-      notificationReceiveData(methodCall.arguments);
+      notificationReceiveData!(methodCall.arguments);
     } else if (methodCall.method == DEEPLINKNOTIFICATION &&
         notificationOpenedData != null) {
-      notificationOpenedData(methodCall.arguments);
+      notificationOpenedData!(methodCall.arguments);
     } else if (methodCall.method == DEVICETOKEN &&
         notificationToken != null) {
-      notificationToken(methodCall.arguments);
+      notificationToken!(methodCall.arguments);
     } else if (methodCall.method == HANDLELANDINGURL &&
         notificationWebView != null) {
-      notificationWebView(methodCall.arguments);
+      notificationWebView!(methodCall.arguments);
     }
   }
 

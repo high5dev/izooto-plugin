@@ -4,54 +4,54 @@ import 'dart:core';
 import 'dart:developer';
 
 class Payload{
-  String fetchURL;
-  String key;
-  String id;//campain id
-  String rid;//run id
-  String link;
-  String title;
-  String subTitle;
-  String message;
-  String icon;
-  String badgeicon;
-  String badgecolor;
-  int group;
-  int reqInt;
-  String tag;
-  String banner;
-  int act_num;
-  String act1name;
-  String act1link;
-  String act2name;
-  String act2link;
-  int inapp;
-  String trayicon;
-  String smallIconAccentColor;
-  String sound;
-  String ledColor;
-  int lockScreenVisibility = 1;
-  String groupKey;
-  String groupMessage;
-  String fromProjectNumber;
-  String collapseId;
-  int priority;
-  String rawPayload;
-  String act1ID;
-  String act2ID;
+  String? fetchURL;
+  String? key;
+  String? id;//campain id
+  String? rid;//run id
+  String? link;
+  String? title;
+  String? subTitle;
+  String? message;
+  String? icon;
+  String? badgeicon;
+  String? badgecolor;
+  int? group;
+  int? reqInt;
+  String? tag;
+  String? banner;
+  int? act_num;
+  String? act1name;
+  String? act1link;
+  String? act2name;
+  String? act2link;
+  int? inapp;
+  String? trayicon;
+  String? smallIconAccentColor;
+  String? sound;
+  String? ledColor;
+  int? lockScreenVisibility = 1;
+  String? groupKey;
+  String? groupMessage;
+  String? fromProjectNumber;
+  String? collapseId;
+  int? priority;
+  String? rawPayload;
+  String? act1ID;
+  String? act2ID;
 
 
-  String ap;
-  String type_input_to_payload;
-  String dropdown_text;
-  String validation;
-  String editbox_title;
-  String type;
-  bool isAndroid;
-  bool isiOS;
-  bool isWeb;
-  String  act1icon;
-  String  act2icon;
-  int  badgeCount;
+  String? ap;
+  String? type_input_to_payload;
+  String? dropdown_text;
+  String? validation;
+  String? editbox_title;
+  String? type;
+  bool? isAndroid;
+  bool? isiOS;
+  bool? isWeb;
+  String?  act1icon;
+  String?  act2icon;
+  int?  badgeCount;
 
   Payload(String payloadJson){
     log("iZootoData payloadJson "+payloadJson);

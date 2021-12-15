@@ -5,15 +5,15 @@ import 'package:flutter/services.dart' hide MessageHandler;
 typedef WillPresentHandler = Future<bool> Function(Map<String, dynamic>);
 class iZootoiOS extends PushConnector {
   final MethodChannel _channel = const MethodChannel('izooto_flutter');
-  MessageHandler _onMessage;
-  MessageHandler _onLaunch;
-  MessageHandler _onResume;
+  MessageHandler? _onMessage;
+  MessageHandler? _onLaunch;
+  MessageHandler? _onResume;
   @override
   void configure({
-    MessageHandler onMessage,
-    MessageHandler onLaunch,
-    MessageHandler onResume,
-    MessageHandler onBackgroundMessage,
+    MessageHandler? onMessage,
+    MessageHandler? onLaunch,
+    MessageHandler? onResume,
+    MessageHandler? onBackgroundMessage,
   }) {
     _onMessage = onMessage;
     _onLaunch = onLaunch;
@@ -33,14 +33,14 @@ class iZootoiOS extends PushConnector {
       case 'handleLandingURL':
        return openLandingURL.value = call.arguments;
       case 'onMessage':
-        return _onMessage(call.arguments.cast<String, dynamic>());
+        return _onMessage!(call.arguments.cast<String, dynamic>());
       case 'onLaunch':
-        return _onLaunch(call.arguments.cast<String, dynamic>());
+        return _onLaunch!(call.arguments.cast<String, dynamic>());
       case 'onResume':
-        return _onResume(call.arguments.cast<String, dynamic>());
-      case 'willPresent':
-        final payload = call.arguments.cast<String, dynamic>();
-        return shouldPresent?.call(payload) ?? Future.value(false);
+        return _onResume!(call.arguments.cast<String, dynamic>());
+      // case 'willPresent':
+      //   final payload = call.arguments.cast<String, dynamic>();
+      //   return shouldPresent?.call(payload) ?? Future.value(false);
 
       default:
         throw UnsupportedError('Unrecognized JSON message');
@@ -49,25 +49,29 @@ class iZootoiOS extends PushConnector {
 
   /// Handler that returns true/false to decide if push alert should be displayed when in foreground.
   /// Returning true will delay onMessage callback until user actually clicks on it
-  WillPresentHandler shouldPresent;
+ // late WillPresentHandler shouldPresent;
+
+  // @override
+  // final isDisabledByUser = ValueNotifier("");
 
   @override
-  final isDisabledByUser = ValueNotifier(null);
+  final token = ValueNotifier<String>("");
 
   @override
-  final token = ValueNotifier<String>(null);
-
-  @override
-  final receivePayload = ValueNotifier<String>(null);
+  final receivePayload = ValueNotifier<String>("");
 
   @override
   final openNotification = ValueNotifier<String>("HandleData");
 
   @override
-  final openLandingURL = ValueNotifier<String>(null);
+  final openLandingURL = ValueNotifier<String>("");
 
   @override
   String get providerType => "APNS";
+
+  @override
+  // TODO: implement isDisabledByUser
+  ValueNotifier<bool> get isDisabledByUser => throw UnimplementedError();
 
 
 
