@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -48,18 +47,18 @@ class _HomeState extends State<Home>  {
   void dispose() {
     super.dispose();
   }
-  _showPasswordDialog(String data){
-    showDialog(
-        context: context,
-        builder: (_){
-          return AlertDialog(
-            title: Text(data),
-            content: Container(child: TextField(),),
-            actions: <Widget>[FlatButton(child: Text("OK"),onPressed: (){},)],
-          );
-        }
-    );
-  }
+  // _showPasswordDialog(String data){
+  //   showDialog(
+  //       context: context,
+  //       builder: (_){
+  //         return AlertDialog(
+  //           title: Text(data),
+  //           content: Container(child: TextField(),),
+  //           actions: <Widget>[FlatButton(child: Text("OK"),onPressed: (){},)],
+  //         );
+  //       }
+  //   );
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,16 +70,17 @@ class _HomeState extends State<Home>  {
         children: <Widget>[
           Align(
             alignment: Alignment.center,
-            child: RaisedButton(
-              child: Text('Unsubscrbe'),
-            ),
+            // child: RaisedButton(
+            //   onPressed: () {  },
+            //   child: Text('Unsubscrbe'),
+            // ),
           ),
           SizedBox(height: 16.0),
           Align(
             alignment: Alignment.center,
-            child: RaisedButton(
-              child: Text('Logout email'),
-            ),
+            // child: RaisedButton(
+            //   child: Text('Logout email'),
+            // ),
           )
         ],
       ),
@@ -145,8 +145,8 @@ class _HomeState extends State<Home>  {
 Future<dynamic> onPush(String name, Map<String, dynamic> payload) {
   return Future.value(true);
 }
-Future<dynamic> _onBackgroundMessage(Map<String, dynamic> data) =>
-    onPush('onBackgroundMessage', data);
+// Future<dynamic> _onBackgroundMessage(Map<String, dynamic> data) =>
+//     onPush('onBackgroundMessage', data);
 
 
 
