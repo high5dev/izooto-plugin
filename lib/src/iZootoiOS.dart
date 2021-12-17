@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:async';
 import 'package:flutter/foundation.dart';
@@ -7,15 +7,15 @@ import 'package:flutter/services.dart' hide MessageHandler;
 typedef WillPresentHandler = Future<bool> Function(Map<String, dynamic>);
 class iZootoiOS extends PushConnector {
   final MethodChannel _channel = const MethodChannel('izooto_flutter');
-  MessageHandler _onMessage;
-  MessageHandler _onLaunch;
-  MessageHandler _onResume;
+  MessageHandler? _onMessage;
+  MessageHandler? _onLaunch;
+  MessageHandler? _onResume;
   @override
   void configure({
-    MessageHandler onMessage,
-    MessageHandler onLaunch,
-    MessageHandler onResume,
-    MessageHandler onBackgroundMessage,
+    MessageHandler? onMessage,
+    MessageHandler? onLaunch,
+    MessageHandler? onResume,
+    MessageHandler? onBackgroundMessage,
   }) {
     _onMessage = onMessage;
     _onLaunch = onLaunch;
@@ -35,11 +35,11 @@ class iZootoiOS extends PushConnector {
       case 'handleLandingURL':
        return openLandingURL.value = call.arguments;
       case 'onMessage':
-        return _onMessage(call.arguments.cast<String, dynamic>());
+        return _onMessage!(call.arguments.cast<String, dynamic>());
       case 'onLaunch':
-        return _onLaunch(call.arguments.cast<String, dynamic>());
+        return _onLaunch!(call.arguments.cast<String, dynamic>());
       case 'onResume':
-        return _onResume(call.arguments.cast<String, dynamic>());
+        return _onResume!(call.arguments.cast<String, dynamic>());
       // case 'willPresent':
       //   final payload = call.arguments.cast<String, dynamic>();
       //   return shouldPresent?.call(payload) ?? Future.value(false);

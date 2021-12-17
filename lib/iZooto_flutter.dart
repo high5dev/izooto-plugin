@@ -1,4 +1,4 @@
-// @dart=2.9
+
 
 import 'dart:async';
 import 'package:flutter/foundation.dart';
@@ -7,10 +7,10 @@ import 'package:flutter/services.dart';
 export 'package:izooto_plugin/src/iZootoConnection.dart';
 export 'package:izooto_plugin/iZooto_apns.dart';
 enum OSInAppDisplayOption { None, InAppAlert, Notification }
-typedef void ReceiveNotificationParam(String payload);
-typedef void OpenedNotificationParam(String data);
-typedef void TokenNotificationParam(String token);
-typedef void WebViewNotificationParam(String landingUrl);
+typedef void ReceiveNotificationParam(String? payload);
+typedef void OpenedNotificationParam(String? data);
+typedef void TokenNotificationParam(String? token);
+typedef void WebViewNotificationParam(String? landingUrl);
 const  String PLUGIN_NAME ="izooto_flutter";
 const String RECEIVE_PAYLOAD ="receivedPayload";//receivedPayload
 const String ADDUSERPROPERTIES ="addUserProperties";
@@ -43,10 +43,10 @@ enum PushTemplate {DEFAULT, TEXT_OVERLAY}
 class iZooto {
   static iZooto shared = new iZooto();
   static const MethodChannel _channel = const MethodChannel(FLUTTERSDKNAME);
-  static ReceiveNotificationParam notificationReceiveData;
-  static OpenedNotificationParam notificationOpenedData;
-  static TokenNotificationParam notificationToken;
-  static WebViewNotificationParam notificationWebView;
+  static ReceiveNotificationParam? notificationReceiveData;
+  static OpenedNotificationParam? notificationOpenedData;
+  static TokenNotificationParam? notificationToken;
+  static WebViewNotificationParam? notificationWebView;
 
 
   iZooto() {
@@ -56,7 +56,7 @@ class iZooto {
 
  // for integration ios
   static Future<void> iOSInit({
-    @required String appId}) async {
+    required String appId}) async {
     await _channel.invokeMethod(iOSINIT, {
       iOSAPPID: appId
     });
@@ -72,24 +72,24 @@ class iZooto {
     _channel.invokeMethod(SETSUBSCRIPTION, {ENABLE: enable});
   }
 
-  static Future<String> receiveToken() async
+  static Future<String?> receiveToken() async
   {
-    final String receiveToken = await _channel.invokeMethod(DEVICETOKEN);
+    final String? receiveToken = await _channel.invokeMethod(DEVICETOKEN);
     return receiveToken;
   }
-  static Future<String> receivePayload() async
+  static Future<String?> receivePayload() async
   {
-    final String receivePayload = await _channel.invokeMethod(RECEIVE_PAYLOAD);
+    final String? receivePayload = await _channel.invokeMethod(RECEIVE_PAYLOAD);
     return receivePayload;
   }
-  static Future<String> receiveOpenData() async
+  static Future<String?> receiveOpenData() async
   {
-    final String receiveOpenData = await _channel.invokeMethod(DEEPLINKNOTIFICATION);
+    final String? receiveOpenData = await _channel.invokeMethod(DEEPLINKNOTIFICATION);
     return receiveOpenData;
   }
-  static Future<String> receiveLandingURL() async
+  static Future<String?> receiveLandingURL() async
   {
-    final String receiveLandingURL = await _channel.invokeMethod(LANDINGURL);
+    final String? receiveLandingURL = await _channel.invokeMethod(LANDINGURL);
     return receiveLandingURL;
   }
 
@@ -165,16 +165,16 @@ class iZooto {
     if (methodCall.method == RECEIVE_PAYLOAD &&
         notificationReceiveData != null) {
 
-      notificationReceiveData(methodCall.arguments);
+      notificationReceiveData!(methodCall.arguments);
     } else if (methodCall.method == DEEPLINKNOTIFICATION &&
         notificationOpenedData != null) {
-      notificationOpenedData(methodCall.arguments);
+      notificationOpenedData!(methodCall.arguments);
     } else if (methodCall.method == DEVICETOKEN &&
         notificationToken != null) {
-      notificationToken(methodCall.arguments);
+      notificationToken!(methodCall.arguments);
     } else if (methodCall.method == HANDLELANDINGURL &&
         notificationWebView != null) {
-      notificationWebView(methodCall.arguments);
+      notificationWebView!(methodCall.arguments);
     }
   }
 
