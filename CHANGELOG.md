@@ -4,6 +4,7 @@
 ## 0.0.4 Third release (Bug Fixes -> Platform issue)[16 April 2021]
 ## 1.1.0 Fourth release(Bug Fixes-> Killed state issue )[17 August 2021]
 ## 2.0.0 Fift release(Bug Fixes-> Support Android 12 and Null safety )[16  December 2021]
+## 2.0.1 Sixth release(Bug Fixes-> Android 12 )[02  February 2022]
 
     
 
