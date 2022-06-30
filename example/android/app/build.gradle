@@ -39,6 +39,9 @@ android {
         manifestPlaceholders = [
                 izooto_app_id : "09f06385e06cc10d0fc7a5e1c002cd9338a2c94f"
         ]
+        multiDexEnabled true
+
+
     }
 
     buildTypes {

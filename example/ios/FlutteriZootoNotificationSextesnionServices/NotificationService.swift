@@ -16,7 +16,7 @@ class NotificationService: UNNotificationServiceExtension {
       self.contentHandler = contentHandler
       bestAttemptContent = (request.content.mutableCopy() as? UNMutableNotificationContent)
       if let bestAttemptContent = bestAttemptContent {
-        iZooto.didReceiveNotificationExtensionRequest(bundleName :"YOUR_BUNDLE_IDENTIFIER_NAME",request: receivedRequest, bestAttemptContent: bestAttemptContent,contentHandler: contentHandler)
+        iZooto.didReceiveNotificationExtensionRequest(bundleName :"com.izootoPlugin",request: receivedRequest, bestAttemptContent: bestAttemptContent,contentHandler: contentHandler)
     }
     }
     override func serviceExtensionTimeWillExpire() {

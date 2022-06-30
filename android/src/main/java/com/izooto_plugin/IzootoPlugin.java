@@ -32,6 +32,7 @@ import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 
+@SuppressWarnings("IzootoPlugin")
 public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHandler
 {
     @SuppressLint("StaticFieldLeak")
@@ -181,8 +182,6 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
             notificationToken = token;
             if (token!=null) {
                 try {
-                    Log.e("Token ",notificationToken);
-
                     invokeMethodOnUiThread(iZootoConstant.iZOOTO_DEVICE_TOKEN, token);
                 } catch (Exception e) {
                     e.getStackTrace();

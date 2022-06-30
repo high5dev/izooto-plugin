@@ -65,6 +65,7 @@ class _HomeState extends State<Home>  {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -78,9 +79,9 @@ class _HomeState extends State<Home>  {
           SizedBox(height: 16.0),
           Align(
             alignment: Alignment.center,
-            // child: RaisedButton(
-            //   child: Text('Logout email'),
-            // ),
+             child: RaisedButton(
+               child: Text('Welcome to iZooto Push Notification Services'),
+             ),
           )
         ],
       ),
@@ -95,7 +96,7 @@ class _HomeState extends State<Home>  {
 
       iZooto.androidInit(); // for Android
       iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
-      iZooto.setDefaultNotificationBanner("");
+     // iZooto.setDefaultNotificationBanner("");
       if(Platform.isIOS) {
         iZooto.iOSInit(
             appId: "5f2f1dabe93b9f2329ead1bad063ec6ab6504766"); // for iOS
