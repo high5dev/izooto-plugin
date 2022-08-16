@@ -17,7 +17,7 @@ A new Flutter plugin.
  s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
   s.platform = :ios, '10.0'
-s.dependency 'iZootoiOSSDK','1.1.10'
+  s.dependency 'iZootoiOSSDK'
 
 
   s.ios.deployment_target = '10.0'
