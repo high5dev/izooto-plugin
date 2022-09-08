@@ -1,6 +1,6 @@
 name: izooto_plugin
 description:  iZooto is a free push notification service for mobile apps. This SDK makes it easy to integrate your Flutter iOS and/or Android apps with iZooto.
-version: 2.0.4
+version: 2.0.5
 homepage: https://github.com/izooto-mobile-sdk/iZooto_flutter_plugin.git
 
 environment:

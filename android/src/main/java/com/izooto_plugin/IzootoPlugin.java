@@ -64,7 +64,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                         .setLandingURLListener(iZootoNotificationListener)
                         .setNotificationReceiveHybridListener(iZootoNotificationListener)
                         .build();
-                iZooto.setPluginVersion("fv_2.0.4");
+                iZooto.setPluginVersion("fv_2.0.5");
                 break;
             case iZootoConstant.SETSUBSCRIPTION:
                 try {
