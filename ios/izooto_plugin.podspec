@@ -4,11 +4,9 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'izooto_plugin'
-  s.version          = '0.0.1'
-  s.summary          = 'A new Flutter plugin.'
-  s.description      = <<-DESC
-A new Flutter plugin.
-                       DESC
+  s.version          = '2.0.4'
+  s.summary          = 'The iZooto Flutter SDK'
+  s.description      = 'Allows you to easily add iZooto to your flutter projects, to make sending and handling push notifications easy'
   s.homepage         = 'http://izooto.com'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Amit Kumar Gupta' => 'amit@datability.co' }

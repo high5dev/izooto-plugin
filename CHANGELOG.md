@@ -7,6 +7,9 @@
 ## 2.0.1 Sixth release(Bug Fixes-> Android 12 )[02  February 2022]
 ## 2.0.2 Seventh release(Support the NewsRoom Template on ANdroid 12 )[30  June 2022]
 
+## 2.0.3 Eighth release(SDK issues)[ 2 August 2022]
+
+## 2.0.4 Nine release(Image Stretch issues and Plugin Version)[ 8 Sepetember 2022]
 
     
 

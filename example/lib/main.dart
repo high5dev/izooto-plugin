@@ -1,7 +1,6 @@
 // @dart=2.9
 
 import 'dart:io';
-
 import 'package:flutter/services.dart';
 import 'package:izooto_plugin/iZooto_flutter.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter iOS Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -35,123 +34,95 @@ class Home extends StatefulWidget {
   _HomeState createState() => new _HomeState();
 }
 
-class _HomeState extends State<Home>  {
-  static const platform =const MethodChannel("iZooto-flutter");
+class _HomeState extends State<Home> {
+  static const platform = const MethodChannel("iZooto-flutter");
   @override
   void initState() {
     super.initState();
     _iZootoInitialise();
-
   }
+
   @override
   void dispose() {
     super.dispose();
   }
-  // _showPasswordDialog(String data){
-  //   showDialog(
-  //       context: context,
-  //       builder: (_){
-  //         return AlertDialog(
-  //           title: Text(data),
-  //           content: Container(child: TextField(),),
-  //           actions: <Widget>[FlatButton(child: Text("OK"),onPressed: (){},)],
-  //         );
-  //       }
-  //   );
-  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Align(
-            alignment: Alignment.center,
-            // child: RaisedButton(
-            //   onPressed: () {  },
-            //   child: Text('Unsubscrbe'),
-            // ),
-          ),
-          SizedBox(height: 16.0),
-          Align(
-            alignment: Alignment.center,
-             child: RaisedButton(
-               child: Text('Welcome to iZooto Push Notification Services'),
-             ),
-          )
-        ],
+      body: const Center(
+        child: Text(
+          'Hello iZooto',
+          style: TextStyle(color: Colors.green, fontSize: 20),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        autofocus: true,
+        focusElevation: 5,
+        child: const Icon(Icons.notifications),
+        onPressed: () {
+          //iZooto.setNewsHub();
+        },
       ),
     );
   }
 
-
-    Future<void> _iZootoInitialise() async  {
-/*
-  iZooto Integration
- */
-
-      iZooto.androidInit(); // for Android
-      iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
-     // iZooto.setDefaultNotificationBanner("");
-      if(Platform.isIOS) {
-        iZooto.iOSInit(
-            appId: "5f2f1dabe93b9f2329ead1bad063ec6ab6504766"); // for iOS
-      }
-     // DeepLink Android/iOS
-      iZooto.shared.onNotificationOpened((data) {
-            print('iZooto DeepLink Datadata : $data');
-      });
-      // LandingURLDelegate Android/iOS
-      iZooto.shared.onWebView((landingUrl) {
-        print(landingUrl);
-        print('iZooto Landing URL  : $landingUrl');
-
-      });
-
-     // Received paylaod Android/iOS
-      iZooto.shared.onNotificationReceived((payload) {
-        print('iZooto Flutter Paylaod : $payload ');
-
-        List<dynamic> list = json.decode(payload);
-        print(list.toString());
-        List<String> receivedpayload = list.reversed.toList();
-
-        print(receivedpayload);
-      });
-      // Device token Android/iOS
-      iZooto.shared.onTokenReceived((token) {
-        print('iZooto Flutter Token : $token ');
-      });
-      //iOS DeepLink Killed state code
-      try {
-        String value = await platform.invokeMethod("OpenNotification");
-        if (value != null) {
-          print('iZooto Killed state ios data : $value ');
-
-          Navigator.of(context).pushNamed('pageTwo');
-        }
-      } catch(Exception) {}
-
-
-
+  //iZooto Integration
+  Future<void> _iZootoInitialise() async {
+    iZooto.androidInit(); // for Android
+    iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
+    if (Platform.isIOS) {
+      iZooto.iOSInit(
+          appId: "9f42c47c6d270255327c057ba31621cbd98ea12f"); // for iOS
     }
+    // Received payload Android/iOS
+    iZooto.shared.onNotificationReceived((payload) {
+      print('iZooto Flutter Payload : $payload ');
 
+      List<dynamic> list = json.decode(payload);
+      print(list.toString());
+      List<String> receivedPayload = list.reversed.toList();
+      print(receivedPayload);
+    });
 
+    // DeepLink Android/iOS
+    iZooto.shared.onNotificationOpened((data) {
+      print('iZooto DeepLink Data : $data');
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const SecondRoute()));
+    });
+
+    //LandingURLDelegate Android/iOS
+    iZooto.shared.onWebView((landingUrl) {
+      print(landingUrl);
+      print('iZooto Landing URL  : $landingUrl');
+    });
+    // Device token Android/iOS
+    iZooto.shared.onTokenReceived((token) {
+      print('iZooto Flutter Token : $token ');
+    });
+    //iOS DeepLink Killed state code
+    try {
+      String value = await platform.invokeMethod("OpenNotification");
+      if (value != null) {
+        print('iZooto Killed state ios data : $value ');
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const SecondRoute()));
+        //      Navigator.of(context).pushNamed('pageTwo');
+      }
+    } catch (Exception) {}
+  }
 }
 
 Future<dynamic> onPush(String name, Map<String, dynamic> payload) {
   return Future.value(true);
 }
+
 // Future<dynamic> _onBackgroundMessage(Map<String, dynamic> data) =>
 //     onPush('onBackgroundMessage', data);
-
-
-
-
 class PageTwo extends StatefulWidget {
   final String title;
 
@@ -169,7 +140,36 @@ class _PageTwoState extends State<PageTwo> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Text('Page two'),
+        child: Text('Page Two'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        autofocus: true,
+        focusElevation: 5,
+        child: const Icon(Icons.notifications),
+        onPressed: () {
+          // iZooto.setNewsHub();
+        },
+      ),
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  const SecondRoute({Key key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Second Page'),
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text('Go back!'),
+        ),
       ),
     );
   }
