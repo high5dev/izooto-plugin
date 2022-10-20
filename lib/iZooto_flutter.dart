@@ -36,6 +36,7 @@ const  String KEYEVENTVALUE="eventValue";
 const String iOSINIT="iOSInit";
 const String iOSAPPID="appId";
 const String FLUTTERSDKNAME="izooto_flutter";
+const String NotificationDefaultIcon = "notificationIcon";
 
 
 // handle the text-overlay template
@@ -89,7 +90,7 @@ class iZooto {
   }
   static Future<String?> receiveLandingURL() async
   {
-    final String? receiveLandingURL = await _channel.invokeMethod(LANDINGURL);
+    final String? receiveLandingURL = await _channel.invokeMethod(HANDLELANDINGURL);
     return receiveLandingURL;
   }
 
@@ -104,6 +105,7 @@ class iZooto {
   static Future<void> setNotificationSound(String soundName) async {
     await _channel.invokeMethod(NOTIFICATIONSOUND, soundName);
   }
+
   static Future<void> addEvent(String eventName,
       Map<String, Object> eventValue) async {
     await _channel.invokeMethod(
@@ -156,10 +158,15 @@ class iZooto {
         {NOTIFICATIONPREVIEW: option.index});
   }
 
+
   static Future<void> setDefaultNotificationBanner(String setBanner) async {
     await _channel.invokeMethod(NOTIFICATIONBANNERIMAGE,
         {NOTIFICATIONBANNERIMAGE: setBanner});
   }
+  static Future<void> setIcon(String icon) async {
+    await _channel.invokeMethod(NotificationDefaultIcon, {NotificationDefaultIcon: icon});
+  }
+   
 
   Future<Null> handleOverrideMethod(MethodCall methodCall) async {
     if (methodCall.method == RECEIVE_PAYLOAD &&

@@ -141,8 +141,23 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 iZootoNotificationListener.onTokenReceived(notificationToken);
                 break;
             case iZootoConstant.iZOOOTO_HANDLE_WEBVIEW:
-                iZootoNotificationListener.onWebView(notificationWebView);
-                iZooto.notificationWebView(iZootoNotificationListener);
+                try {
+                    iZootoNotificationListener.onWebView(notificationWebView);
+                    iZooto.notificationWebView(iZootoNotificationListener);
+                }catch (Exception ex)
+                {
+
+                }
+                break;
+            case iZootoConstant.IZOOTO_SET_ICON:
+                try {
+                    String setIcon = call.argument(iZootoConstant.IZOOTO_SET_ICON);
+                    if (!setIcon.isEmpty()) {
+                        if (getIcon(context) != 0)
+                            iZooto.setIcon(getIcon(context));
+                    }
+                }catch (Exception e){
+                }
                 break;
 
             default:
@@ -249,7 +264,6 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
         else
             iZooto.setInAppNotificationBehaviour(iZooto.OSInAppDisplayOption.Notification);
     }
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private static void setCustomNotification(int index) {
         if (index == 1)
             iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
@@ -274,5 +288,10 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
         }
 
         return bIicon;
+    }
+    static int getIcon(Context context){
+        int setDefaultIcon;
+        setDefaultIcon = context.getApplicationInfo().icon;
+        return  setDefaultIcon;
     }
 }

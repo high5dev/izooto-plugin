@@ -23,7 +23,7 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
 
     defaultConfig {
         minSdkVersion 19
@@ -33,9 +33,9 @@ android {
     }
 }
 dependencies {
-    implementation 'com.izooto:android-sdk:1.5.2'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.firebase:firebase-messaging:23.0.7'
+    implementation 'com.izooto:android-sdk:1.5.3'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.firebase:firebase-messaging:23.1.0'
     implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.cardview:cardview:1.0.0'

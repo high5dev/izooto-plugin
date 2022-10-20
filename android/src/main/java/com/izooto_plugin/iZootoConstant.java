@@ -22,4 +22,5 @@ public interface iZootoConstant {
     String IZOOTO_DEFAULT_TEMPLATE = "izootoDefaultTemplate";
     String ANDROID_INITIALISE_WITH_TOKEN = "iZootoAndroidInitWithToken";
     String IZOOTO_DEFAULT_NOTIFICATION_BANNER = "izootoDefaultNotificationBanner";
+    String IZOOTO_SET_ICON = "notificationIcon";
 }
