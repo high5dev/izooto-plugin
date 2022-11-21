@@ -10,7 +10,6 @@ public interface iZootoConstant {
     String ADDTAGS = "iZootoAddTags";
     String REMOVETAG="iZootoRemoveTags";
     String iZOOTO_HANDLE_NOTIFICATION = "iZootoHandleNotification";
-    String iZOOTO_IN_APP_BEHAVIOUR="iZootoInAppNotificationBehaviour";
     String iZOOTO_RECEIVED_PAYLOAD = "receivedPayload";
     String iZOOTO_OPEN_NOTIFICATION="openNotification";
     String iZOOTO_DEVICE_TOKEN="onToken";
@@ -22,5 +21,6 @@ public interface iZootoConstant {
     String IZOOTO_DEFAULT_TEMPLATE = "izootoDefaultTemplate";
     String ANDROID_INITIALISE_WITH_TOKEN = "iZootoAndroidInitWithToken";
     String IZOOTO_DEFAULT_NOTIFICATION_BANNER = "izootoDefaultNotificationBanner";
-    String IZOOTO_SET_ICON = "notificationIcon";
+    String Plugin_Version ="fv_2.1.0";
+    String PLUGIN_EXCEPTION ="PluginException";
 }

@@ -52,7 +52,7 @@ import UserNotifications
         iZooto.notificationOpenDelegate = self
         iZooto.landingURLDelegate = self
         UNUserNotificationCenter.current().delegate = self
-        iZooto.setPluginVersion(pluginVersion: "fv_2.0.5")
+        iZooto.setPluginVersion(pluginVersion: "fv_2.1.0")
 
         break;
    
@@ -89,9 +89,7 @@ import UserNotifications
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [AnyHashable : Any] = [:]) -> Bool {
       
         launchNotification = launchOptions[UIApplication.LaunchOptionsKey.remoteNotification] as? [String: Any]
-      
-//        }
-      
+            
             return true
         }
         

@@ -1,5 +1,4 @@
 
-
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -36,11 +35,10 @@ const  String KEYEVENTVALUE="eventValue";
 const String iOSINIT="iOSInit";
 const String iOSAPPID="appId";
 const String FLUTTERSDKNAME="izooto_flutter";
-const String NotificationDefaultIcon = "notificationIcon";
 
 
 // handle the text-overlay template
-enum PushTemplate {DEFAULT, TEXT_OVERLAY}
+enum PushTemplate {DEFAULT, TEXT_OVERLAY,DEVICE_NOTIFICATION_OVERLAY}
 class iZooto {
   static iZooto shared = new iZooto();
   static const MethodChannel _channel = const MethodChannel(FLUTTERSDKNAME);
@@ -127,12 +125,6 @@ class iZooto {
         {HANDLENOTIFICATION: data});
   }
 
-  static Future<void> setInAppNotificationBehaviour(
-      OSInAppDisplayOption option) async {
-    await _channel.invokeMethod(INAPPBEHAVIOUR,
-        {INAPPBEHAVIOUR: option.index});
-  }
-
   void onNotificationReceived(ReceiveNotificationParam payload) {
     notificationReceiveData = payload;
     _channel.invokeMethod(RECEIVE_PAYLOAD);
@@ -163,11 +155,7 @@ class iZooto {
     await _channel.invokeMethod(NOTIFICATIONBANNERIMAGE,
         {NOTIFICATIONBANNERIMAGE: setBanner});
   }
-  static Future<void> setIcon(String icon) async {
-    await _channel.invokeMethod(NotificationDefaultIcon, {NotificationDefaultIcon: icon});
-  }
-   
-
+  
   Future<Null> handleOverrideMethod(MethodCall methodCall) async {
     if (methodCall.method == RECEIVE_PAYLOAD &&
         notificationReceiveData != null) {
@@ -184,10 +172,4 @@ class iZooto {
       notificationWebView!(methodCall.arguments);
     }
   }
-
-
-
-
-
-
 }

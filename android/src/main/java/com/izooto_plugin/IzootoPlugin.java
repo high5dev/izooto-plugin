@@ -18,6 +18,7 @@ import com.izooto.Payload;
 import com.izooto.PushTemplate;
 import com.izooto.TokenReceivedListener;
 import com.izooto.iZooto;
+import com.xiaomi.mipush.sdk.help.HelpService;
 
 import org.json.JSONArray;
 
@@ -64,7 +65,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                         .setLandingURLListener(iZootoNotificationListener)
                         .setNotificationReceiveHybridListener(iZootoNotificationListener)
                         .build();
-                iZooto.setPluginVersion("fv_2.0.5");
+                iZooto.setPluginVersion(iZootoConstant.Plugin_Version);
                 break;
             case iZootoConstant.SETSUBSCRIPTION:
                 try {
@@ -72,7 +73,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                     iZooto.setSubscription(setSubscription);
                 }catch (Exception ex)
                 {
-                    Log.v("Handle",ex.toString());
+                    Log.v(iZootoConstant.PLUGIN_EXCEPTION,ex.toString());
                 }
                 break;
             case iZootoConstant.FIREBASEANLYTICS:
@@ -96,7 +97,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                     iZooto.setNotificationSound(soundName);
                 }catch (Exception ex)
                 {
-                    Log.v("Handle",ex.toString());
+                    Log.v(iZootoConstant.PLUGIN_EXCEPTION,ex.toString());
                 }
                 break;
             case iZootoConstant.ADDTAGS: {
@@ -125,10 +126,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 Map<String, String> map = (Map<String, String>) handleNotification;
                 iZooto.iZootoHandleNotification(context, map);
                 break;
-            case iZootoConstant.iZOOTO_IN_APP_BEHAVIOUR:
-                int notificationBehaviour = call.argument(iZootoConstant.iZOOTO_IN_APP_BEHAVIOUR);
-                setNotificationBehaviour(notificationBehaviour);
-                break;
+
             case iZootoConstant.iZOOTO_RECEIVED_PAYLOAD:
                 iZootoNotificationListener.onNotificationReceivedHybrid(notificationPayload);
                 iZooto.notificationReceivedCallback(iZootoNotificationListener);
@@ -146,20 +144,10 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                     iZooto.notificationWebView(iZootoNotificationListener);
                 }catch (Exception ex)
                 {
+                    Log.v(iZootoConstant.PLUGIN_EXCEPTION,ex.toString());
 
                 }
                 break;
-            case iZootoConstant.IZOOTO_SET_ICON:
-                try {
-                    String setIcon = call.argument(iZootoConstant.IZOOTO_SET_ICON);
-                    if (!setIcon.isEmpty()) {
-                        if (getIcon(context) != 0)
-                            iZooto.setIcon(getIcon(context));
-                    }
-                }catch (Exception e){
-                }
-                break;
-
             default:
                  result.notImplemented();
                 break;
@@ -256,19 +244,16 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
         });
     }
 
-    private static void setNotificationBehaviour(int index){
-        if (index == 0)
-            iZooto.setInAppNotificationBehaviour(iZooto.OSInAppDisplayOption.None);
-        else if (index == 1)
-            iZooto.setInAppNotificationBehaviour(iZooto.OSInAppDisplayOption.InAppAlert);
-        else
-            iZooto.setInAppNotificationBehaviour(iZooto.OSInAppDisplayOption.Notification);
-    }
     private static void setCustomNotification(int index) {
-        if (index == 1)
+        if (index == 2) {
             iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
-        else
+        }
+        else if(index == 3) {
+
+        }
+         else {
             iZooto.setDefaultTemplate(PushTemplate.DEFAULT);
+        }
     }
 
     static int getBadgeIcon(Context context, String setBadgeIcon){

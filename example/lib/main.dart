@@ -94,7 +94,6 @@ class _HomeState extends State<Home> {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => const SecondRoute()));
     });
-    iZooto.setIcon("imageName");
 
      
     //LandingURLDelegate Android/iOS
