@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 export 'package:izooto_plugin/src/iZootoConnection.dart';
 export 'package:izooto_plugin/iZooto_apns.dart';
-enum OSInAppDisplayOption { None, InAppAlert, Notification }
+
 typedef void ReceiveNotificationParam(String? payload);
 typedef void OpenedNotificationParam(String? data);
 typedef void TokenNotificationParam(String? token);
@@ -25,7 +25,6 @@ const String PROPERTIES="iZootoAddProperties";
 const String ADDTAG="iZootoAddTags";
 const String REMOVETAG="iZootoRemoveTags";
 const String HANDLENOTIFICATION="iZootoHandleNotification";
-const String INAPPBEHAVIOUR="iZootoInAppNotificationBehaviour";
 const String HANDLELANDINGURL="handleLandingURL";//handleLandingURL
 const String NOTIFICATIONPREVIEW="izootoDefaultTemplate";
 const String NOTIFICATIONBANNERIMAGE="izootoDefaultNotificationBanner";

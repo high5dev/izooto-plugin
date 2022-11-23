@@ -164,7 +164,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 try {
                     invokeMethodOnUiThread(iZootoConstant.iZOOTO_RECEIVED_PAYLOAD, jsonPayload);
                 } catch (Exception e) {
-                    e.getStackTrace();
+                    Log.v(iZootoConstant.PLUGIN_EXCEPTION,e.toString());
                 }
             }
 
@@ -177,7 +177,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 try {
                     invokeMethodOnUiThread(iZootoConstant.iZOOTO_OPEN_NOTIFICATION, data);
                 } catch (Exception e) {
-                    e.getStackTrace();
+                    Log.v(iZootoConstant.PLUGIN_EXCEPTION,e.toString());
                 }
             }
         }
@@ -189,7 +189,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 try {
                     invokeMethodOnUiThread(iZootoConstant.iZOOTO_DEVICE_TOKEN, token);
                 } catch (Exception e) {
-                    e.getStackTrace();
+                    Log.v(iZootoConstant.PLUGIN_EXCEPTION,e.toString());
                 }
             }
         }
@@ -201,7 +201,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 try {
                     invokeMethodOnUiThread(iZootoConstant.iZOOOTO_HANDLE_WEBVIEW, landingUrl);
                 } catch (Exception e) {
-                    e.getStackTrace();
+                    Log.v(iZootoConstant.PLUGIN_EXCEPTION,e.toString());
                 }
             }
         }
@@ -218,7 +218,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                     }
                     invokeMethodOnUiThread(iZootoConstant.iZOOTO_RECEIVED_PAYLOAD, reverseList.toString());
                 } catch (Exception e) {
-                    e.getStackTrace();
+                    Log.v(iZootoConstant.PLUGIN_EXCEPTION,e.toString());
                 }
             }
 
@@ -249,7 +249,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
             iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
         }
         else if(index == 3) {
-
+            iZooto.setDefaultTemplate(PushTemplate.DEVICE_NOTIFICATION_OVERLAY);
         }
          else {
             iZooto.setDefaultTemplate(PushTemplate.DEFAULT);
@@ -274,9 +274,5 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
 
         return bIicon;
     }
-    static int getIcon(Context context){
-        int setDefaultIcon;
-        setDefaultIcon = context.getApplicationInfo().icon;
-        return  setDefaultIcon;
-    }
+
 }

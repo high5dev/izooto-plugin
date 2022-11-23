@@ -12,6 +12,6 @@
 ## 2.0.5 Nine release(Image Stretch issues and Plugin Version)[ 8 Sepetember 2022]
 
 ## ## 2.0.6 Tenth release(WebViewListener issues fixed on Android 12 and Added in setIcon Method)[ 20 Ocotber 2022]
-## ## 2.1.0 Eleventh release(AppLaunch, Notification icon and Bug Fixed)[ 21 November 2022]
+## ## 2.1.0 Eleventh release(AppLaunch, Notification icon and Bug Fixed)[ 23 November 2022]
     
 
