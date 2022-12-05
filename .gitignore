@@ -3,5 +3,12 @@
 
 .packages
 .pub/
+ pubspec.lock
+ 
 
 build/
+android/.idea
+
+# IntelliJ related
+
+.idea/
