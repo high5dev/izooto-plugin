@@ -16,5 +16,8 @@
 ## 2.1.0 Eleventh release(AppLaunch, Notification icon and Bug Fixed)[ 23 November 2022]
 
 ## 2.1.1 Twelve release(Bug Fixed)[ 5 December 2022]
+
+## 2.1.1 13th release(Bug Fixed ENG-14289)[ 7 December 2022]
+
  
 
