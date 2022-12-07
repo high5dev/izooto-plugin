@@ -16,6 +16,9 @@ Please refer to iZooto's [Flutter SDK Setup](https://help.izooto.com/docs/flutte
 
 Please see iZooto's [Flutter SDK References](https://help.izooto.com/docs/flutter-sdk) page for available callbacks and methods.
 
+#### Change Log
+
+Please refer to this repository’s [release tags](https://github.com/iZooto-App-Push/iZooto_flutter_plugin/releases) for a complete change log of every released version.
 
 #### Support
 
