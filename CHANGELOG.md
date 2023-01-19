@@ -17,7 +17,10 @@
 
 ## 2.1.1 Twelve release(Bug Fixed)[ 5 December 2022]
 
-## 2.1.1 13th release(Bug Fixed ENG-14289)[ 7 December 2022]
+## 2.1.2 13th release(Bug Fixed ENG-14289)[ 7 December 2022]
+
+## 2.1.3 14th release(Bug Fixed Foreground DeepLink Notification Click issue fixed)[ 19 Jan 2023]
+
 
  
 
