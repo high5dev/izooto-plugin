@@ -21,6 +21,6 @@ public interface iZootoConstant {
     String IZOOTO_DEFAULT_TEMPLATE = "izootoDefaultTemplate";
     String ANDROID_INITIALISE_WITH_TOKEN = "iZootoAndroidInitWithToken";
     String IZOOTO_DEFAULT_NOTIFICATION_BANNER = "izootoDefaultNotificationBanner";
-    String Plugin_Version ="fv_2.1.2";
+    String Plugin_Version ="fv_2.1.3";
     String PLUGIN_EXCEPTION ="PluginException";
 }
