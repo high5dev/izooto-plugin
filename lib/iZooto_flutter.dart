@@ -34,6 +34,8 @@ const  String KEYEVENTVALUE="eventValue";
 const String iOSINIT="iOSInit";
 const String iOSAPPID="appId";
 const String FLUTTERSDKNAME="izooto_flutter";
+const NOTIFICATION_PERMISSION="notificationPermission";
+
 
 
 // handle the text-overlay template
@@ -95,6 +97,9 @@ class iZooto {
 
   static Future<void> androidInit() async {
     await _channel.invokeMethod(ANDROIDINIT);
+  }
+  static Future<void> promptForPushNotifications() async {
+    await _channel.invokeMethod(NOTIFICATION_PERMISSION);
   }
   static Future<void> setFirebaseAnalytics(bool enable) async {
     await _channel.invokeMethod(FIREBASEANALYTICS, enable);

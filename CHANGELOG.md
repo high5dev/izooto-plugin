@@ -21,6 +21,9 @@
 
 ## 2.1.3 14th release(Bug Fixed Foreground DeepLink Notification Click issue fixed)[ 19 Jan 2023]
 
+## 2.1.4 15th release(Android 13 Support and Notification Badge color)[ 03 Feb 2023]
+
+
 
  
 

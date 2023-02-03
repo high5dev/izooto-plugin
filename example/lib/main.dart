@@ -73,7 +73,8 @@ class _HomeState extends State<Home> {
   //iZooto Integration
   Future<void> _iZootoInitialise() async {
     iZooto.androidInit(); // for Android
-    iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
+     iZooto.promptForPushNotifications();   
+ iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
     if (Platform.isIOS) {
       iZooto.iOSInit(
           appId: "9f42c47c6d270255327c057ba31621cbd98ea12f"); // for iOS
