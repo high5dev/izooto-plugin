@@ -69,7 +69,7 @@ class iZooto {
     });
   }
   static setSubscription(bool enable) async {
-    _channel.invokeMethod(SETSUBSCRIPTION, {ENABLE: enable});
+    _channel.invokeMethod(SETSUBSCRIPTION,enable);
   }
 
   static Future<String?> receiveToken() async
