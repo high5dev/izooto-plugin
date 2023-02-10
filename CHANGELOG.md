@@ -23,6 +23,9 @@
 
 ## 2.1.4 15th release(Android 13 Support and Notification Badge color)[ 03 Feb 2023]
 
+## 2.1.5 16th release(Notification Subscribe and UnSubscribe issues fixed)[ 10 Feb 2023]
+
+
 
 
  
