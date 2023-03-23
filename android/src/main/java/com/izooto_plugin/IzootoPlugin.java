@@ -1,15 +1,14 @@
 package com.izooto_plugin;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-
 import com.google.gson.Gson;
 import com.izooto.NotificationHelperListener;
 import com.izooto.NotificationReceiveHybridListener;
@@ -18,26 +17,24 @@ import com.izooto.Payload;
 import com.izooto.PushTemplate;
 import com.izooto.TokenReceivedListener;
 import com.izooto.iZooto;
-import com.xiaomi.mipush.sdk.help.HelpService;
-
 import org.json.JSONArray;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
+import io.flutter.embedding.engine.plugins.activity.ActivityAware;
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 
 @SuppressWarnings("IzootoPlugin")
-public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHandler
+public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHandler, ActivityAware
 {
     @SuppressLint("StaticFieldLeak")
     static Context context;
+
+    Activity activity;
     MethodChannel channel;
     private String notificationOpenedData, notificationToken, notificationWebView,notificationPayload;
 
@@ -52,7 +49,6 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
         channel.setMethodCallHandler(null);
     }
 // Handle the all methods
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
         iZootoNotificationListener iZootoNotificationListener = new iZootoNotificationListener();
@@ -161,10 +157,54 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
 
                 }
                 break;
+
+
+            /**      setNotificationChannelName    */
+            case iZootoConstant.IZ_CHANNEL_NAME:
+                try {
+                    String channelName = (String) call.arguments;
+                    iZooto.setNotificationChannelName(channelName);
+                }
+                catch (Exception ex) {
+                    Log.v(iZootoConstant.PLUGIN_EXCEPTION,ex.toString());
+                }
+                break;
+
+
+            /**      navigateToSettings    */
+
+            case iZootoConstant.IZ_NAVIGATE_SETTING:
+                try {
+                    iZooto.navigateToSettings(activity);
+                }
+                catch (Exception ex) {
+                    Log.v(iZootoConstant.PLUGIN_EXCEPTION,ex.toString());
+                }
+                break;
             default:
                  result.notImplemented();
                 break;
         }
+    }
+
+    @Override
+    public void onAttachedToActivity(@NonNull ActivityPluginBinding binding) {
+        activity = binding.getActivity();
+    }
+
+    @Override
+    public void onDetachedFromActivityForConfigChanges() {
+
+    }
+
+    @Override
+    public void onReattachedToActivityForConfigChanges(@NonNull ActivityPluginBinding binding) {
+
+    }
+
+    @Override
+    public void onDetachedFromActivity() {
+
     }
 
     private class iZootoNotificationListener implements TokenReceivedListener, NotificationHelperListener, NotificationWebViewListener ,NotificationReceiveHybridListener{

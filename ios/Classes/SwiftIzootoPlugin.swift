@@ -52,7 +52,7 @@ import UserNotifications
         iZooto.notificationOpenDelegate = self
         iZooto.landingURLDelegate = self
         UNUserNotificationCenter.current().delegate = self
-        iZooto.setPluginVersion(pluginVersion: "fv_2.1.5")
+        iZooto.setPluginVersion(pluginVersion: "fv_2.1.6")
 
         break;
    
@@ -78,6 +78,10 @@ import UserNotifications
         let enable: Bool = (map?["enable"] as? Bool)!
         iZooto.setSubscription(isSubscribe: enable)
        break;
+        
+    case "navigateToSettings" :
+        iZooto.checkNotificationEnable()
+        break
     default:
         result("Not Implemented")
         break;

@@ -25,6 +25,9 @@
 
 ## 2.1.5 16th release(Notification Subscribe and UnSubscribe issues fixed)[ 10 Feb 2023]
 
+## 2.1.6 17th release(Notification Channel Name and navigate settings)[ 23 March 2023]
+
+
 
 
 

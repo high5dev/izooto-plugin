@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
         focusElevation: 5,
         child: const Icon(Icons.notifications),
         onPressed: () {
-          //iZooto.setNewsHub();
+           iZooto.navigateToSettings(); // navigate to device notification setting page
         },
       ),
     );
@@ -73,7 +73,8 @@ class _HomeState extends State<Home> {
   //iZooto Integration
   Future<void> _iZootoInitialise() async {
     iZooto.androidInit(); // for Android
-     iZooto.promptForPushNotifications();   
+     iZooto.promptForPushNotifications(); 
+     iZooto.setNotificationChannelName(" Push Notification  "); // channel name
  iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
     if (Platform.isIOS) {
       iZooto.iOSInit(
@@ -149,7 +150,7 @@ class _PageTwoState extends State<PageTwo> {
         focusElevation: 5,
         child: const Icon(Icons.notifications),
         onPressed: () {
-          // iZooto.setNewsHub();
+           iZooto.navigateToSettings();
         },
       ),
     );

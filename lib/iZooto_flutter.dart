@@ -35,6 +35,8 @@ const String iOSINIT="iOSInit";
 const String iOSAPPID="appId";
 const String FLUTTERSDKNAME="izooto_flutter";
 const NOTIFICATION_PERMISSION="notificationPermission";
+const  IZ_CHANNEL_NAME = "setNotificationChannelName";
+const  IZ_NAVIGATE_SETTING = "navigateToSettings";
 
 
 
@@ -100,6 +102,17 @@ class iZooto {
   }
   static Future<void> promptForPushNotifications() async {
     await _channel.invokeMethod(NOTIFICATION_PERMISSION);
+  }
+  ///     setNotificationChannelName   */
+
+  static setNotificationChannelName(String channelName) async {
+    _channel.invokeMethod(IZ_CHANNEL_NAME, channelName);
+  }
+
+  ///     navigateToNotificationSetting   */
+
+  static navigateToSettings() async {
+    _channel.invokeMethod(IZ_NAVIGATE_SETTING);
   }
   static Future<void> setFirebaseAnalytics(bool enable) async {
     await _channel.invokeMethod(FIREBASEANALYTICS, enable);
