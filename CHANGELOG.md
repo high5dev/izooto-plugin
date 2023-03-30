@@ -27,6 +27,9 @@
 
 ## 2.1.6 17th release(Notification Channel Name and navigate settings)[ 23 March 2023]
 
+## 2.1.7 18th release(Bug fixed -Notification is not receiving when App is killed mode)[ 30 March 2023]
+
+
 
 
 
