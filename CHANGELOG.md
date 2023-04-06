@@ -29,6 +29,9 @@
 
 ## 2.1.7 18th release(Bug fixed -Notification is not receiving when App is killed mode)[ 30 March 2023]
 
+## 2.1.8 19th release(Bug fixed -Notification center issue fixed(iOS))[ 6 April 2023]
+
+
 
 
 

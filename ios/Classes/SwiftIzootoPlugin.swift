@@ -52,7 +52,7 @@ import UserNotifications
         iZooto.notificationOpenDelegate = self
         iZooto.landingURLDelegate = self
         UNUserNotificationCenter.current().delegate = self
-        iZooto.setPluginVersion(pluginVersion: "fv_2.1.7")
+        iZooto.setPluginVersion(pluginVersion: "fv_2.1.8")
 
         break;
    
@@ -97,16 +97,16 @@ import UserNotifications
             return true
         }
         
-        public func applicationDidEnterBackground(_ application: UIApplication) {
-            resumingFromBackground = true
-
-        }
-        
-        public func applicationDidBecomeActive(_ application: UIApplication) {
-            resumingFromBackground = false
-            application.applicationIconBadgeNumber = 1
-            application.applicationIconBadgeNumber = 0
-        }
+//        public func applicationDidEnterBackground(_ application: UIApplication) {
+//            resumingFromBackground = true
+//
+//        }
+//
+//        public func applicationDidBecomeActive(_ application: UIApplication) {
+//            resumingFromBackground = false
+//            //application.applicationIconBadgeNumber = 1
+//            //application.applicationIconBadgeNumber = 0
+//        }
         //handle token
         public func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
             iZooto.getToken(deviceToken: deviceToken)
@@ -114,20 +114,12 @@ import UserNotifications
                          return String(format: "%02.2hhx", data)
                      }
             let token = tokenParts.joined()
-           // print(token)
-                // channel.invokeMethod("onToken", arguments: token)
             channel.invokeMethod("onToken", arguments: token)
         }
         
         
         public func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) -> Bool {
-//
-//            if resumingFromBackground {
-//                onResume(userInfo: userInfo)
-//            } else {
-//                channel.invokeMethod("onMessage", arguments: userInfo)
-//            }
-//            completionHandler(.newData)
+
             return true
         }
         // called forground
