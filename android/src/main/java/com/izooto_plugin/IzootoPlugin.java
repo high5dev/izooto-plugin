@@ -2,6 +2,7 @@ package com.izooto_plugin;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.Handler;
@@ -10,6 +11,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import com.google.gson.Gson;
+import com.izooto.ActivityLifecycleListener;
 import com.izooto.NotificationHelperListener;
 import com.izooto.NotificationReceiveHybridListener;
 import com.izooto.NotificationWebViewListener;
@@ -43,6 +45,8 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
         context = flutterPluginBinding.getApplicationContext();
         channel = new MethodChannel(flutterPluginBinding.getBinaryMessenger(), iZootoConstant.iZOOTO_PLUGIN_NAME); //define the chanel name
         channel.setMethodCallHandler(this);
+
+
     }
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
@@ -52,6 +56,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
         iZootoNotificationListener iZootoNotificationListener = new iZootoNotificationListener();
+
         switch (call.method) {
             case iZootoConstant.AndroidINITIASE:
                 iZooto.isHybrid=true;

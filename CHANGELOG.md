@@ -31,6 +31,10 @@
 
 ## 2.1.8 19th release(Bug fixed -Notification center issue fixed(iOS))[ 6 April 2023]
 
+## 2.1.9 20th release(Bug fixed -Notification redirection issues in Android 12+)[ 12 April 2023]
+
+
+
 
 
 
