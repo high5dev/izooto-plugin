@@ -24,7 +24,6 @@ public interface iZootoConstant {
     String Plugin_Version ="fv_2.1.9";
     String NOTIFICATION_PERMISSION="notificationPermission";
     String PLUGIN_EXCEPTION ="PluginException";
-
     String IZ_CHANNEL_NAME = "setNotificationChannelName";
     String IZ_NAVIGATE_SETTING = "navigateToSettings";
 
