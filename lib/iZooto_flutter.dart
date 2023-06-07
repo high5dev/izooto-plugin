@@ -41,7 +41,7 @@ const  IZ_NAVIGATE_SETTING = "navigateToSettings";
 
 
 // handle the text-overlay template
-enum PushTemplate {DEFAULT, TEXT_OVERLAY,DEVICE_NOTIFICATION_OVERLAY}
+enum PushTemplate {DEFAULT,DEFAULT_NOTIFICATION,TEXT_OVERLAY,DEVICE_NOTIFICATION_OVERLAY}
 class iZooto {
   static iZooto shared = new iZooto();
   static const MethodChannel _channel = const MethodChannel(FLUTTERSDKNAME);

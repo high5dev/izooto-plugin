@@ -33,6 +33,8 @@
 
 ## 2.1.9 20th release(Bug fixed -Notification redirection issues in Android 12+)[ 12 April 2023]
 
+## 2.2.0 21th release(Bug fixed -Text-Overlay template issues fixed)[ 07 June 2023]
+
 
 
 
