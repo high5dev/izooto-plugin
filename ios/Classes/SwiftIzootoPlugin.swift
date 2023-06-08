@@ -52,7 +52,7 @@ import UserNotifications
         iZooto.notificationOpenDelegate = self
         iZooto.landingURLDelegate = self
         UNUserNotificationCenter.current().delegate = self
-        iZooto.setPluginVersion(pluginVersion: "fv_2.2.0")
+        iZooto.setPluginVersion(pluginVersion: "fv_2.2.1")
 
         break;
    
@@ -80,7 +80,7 @@ import UserNotifications
        break;
         
     case "navigateToSettings" :
-        iZooto.checkNotificationEnable()
+        iZooto.navigateToSettings()
         break
     default:
         result("Not Implemented")

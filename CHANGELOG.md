@@ -35,6 +35,9 @@
 
 ## 2.2.0 21th release(Bug fixed -Text-Overlay template issues fixed)[ 07 June 2023]
 
+## 2.2.1 22th release(Bug fixed -Rename the method name)[ 08 June 2023]
+
+
 
 
 
