@@ -21,10 +21,14 @@ public interface iZootoConstant {
     String IZOOTO_DEFAULT_TEMPLATE = "izootoDefaultTemplate";
     String ANDROID_INITIALISE_WITH_TOKEN = "iZootoAndroidInitWithToken";
     String IZOOTO_DEFAULT_NOTIFICATION_BANNER = "izootoDefaultNotificationBanner";
-    String Plugin_Version ="fv_2.2.1";
+    String Plugin_Version ="fv_2.2.2";
     String NOTIFICATION_PERMISSION="notificationPermission";
     String PLUGIN_EXCEPTION ="PluginException";
     String IZ_CHANNEL_NAME = "setNotificationChannelName";
     String IZ_NAVIGATE_SETTING = "navigateToSettings";
+    String IZ_NOTIFICATION_DATA = "getNotificationFeed";
+    String IZ_IS_PAGINATION = "isPagination";
+    String IZ_PLUGIN_EXCEPTION ="PluginException";
+
 
 }

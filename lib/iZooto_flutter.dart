@@ -37,6 +37,8 @@ const String FLUTTERSDKNAME="izooto_flutter";
 const NOTIFICATION_PERMISSION="notificationPermission";
 const  IZ_CHANNEL_NAME = "setNotificationChannelName";
 const  IZ_NAVIGATE_SETTING = "navigateToSettings";
+const IZ_GET_NOTIFICATION_FEED = "getNotificationFeed";
+const IZ_IS_PAGINATION = "isPagination";
 
 
 
@@ -94,6 +96,13 @@ class iZooto {
     final String? receiveLandingURL = await _channel.invokeMethod(HANDLELANDINGURL);
     return receiveLandingURL;
   }
+
+    /* getting a notification feed data */
+
+   static Future<String> getNotificationFeed(bool isPagination) async {
+     String returnData = await _channel.invokeMethod(IZ_GET_NOTIFICATION_FEED,{IZ_IS_PAGINATION:isPagination});
+     return returnData;
+   }
 
   //start Android
 

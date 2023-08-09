@@ -52,7 +52,7 @@ import UserNotifications
         iZooto.notificationOpenDelegate = self
         iZooto.landingURLDelegate = self
         UNUserNotificationCenter.current().delegate = self
-        iZooto.setPluginVersion(pluginVersion: "fv_2.2.1")
+        iZooto.setPluginVersion(pluginVersion: "fv_2.2.2")
 
         break;
    
@@ -81,7 +81,19 @@ import UserNotifications
         
     case "navigateToSettings" :
         iZooto.navigateToSettings()
-        break
+        break;
+    case AppConstant.IZ_PLUGIN_GET_NOTIFICATION_FEED:
+           let map = call.arguments as? Dictionary<String, Any>
+           let enable: Bool = (map?[AppConstant.IZ_PLUGIN_IS_PAGINATION] as? Bool ?? false)
+           iZooto.getNotificationFeed(isPagination: enable){ (jsonString, error) in
+              if let error = error {
+                  print("\(error.localizedDescription)")
+                  result(AppConstant.IZ_PLUGIN_NO_MORE_DATA)
+              } else if let jsonString = jsonString {
+                  result(jsonString)
+              }
+            }
+      break;
     default:
         result("Not Implemented")
         break;

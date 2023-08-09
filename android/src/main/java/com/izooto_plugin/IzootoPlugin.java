@@ -9,9 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import com.google.gson.Gson;
-import com.izooto.ActivityLifecycleListener;
 import com.izooto.NotificationHelperListener;
 import com.izooto.NotificationReceiveHybridListener;
 import com.izooto.NotificationWebViewListener;
@@ -184,6 +182,19 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 }
                 catch (Exception ex) {
                     Log.v(iZootoConstant.PLUGIN_EXCEPTION,ex.toString());
+                }
+                break;
+
+            /*  Notification feed api    */
+            case iZootoConstant.IZ_NOTIFICATION_DATA:
+                try {
+                    boolean isPagination = Boolean.TRUE.equals(call.argument(iZootoConstant.IZ_IS_PAGINATION));
+                    String centerFeedData = iZooto.getNotificationFeed(isPagination);
+                    result.success(centerFeedData);
+                } catch (Exception ex)
+                {
+                    Log.v(iZootoConstant.IZ_PLUGIN_EXCEPTION,ex.toString());
+
                 }
                 break;
             default:
