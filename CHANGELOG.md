@@ -37,7 +37,7 @@
 
 ## 2.2.1 22th release(Bug fixed -Rename the method name)[ 08 June 2023]
 
-## 2.2.2 23th release(Bug fixed -Expose a Notification Center API Method)[ 09 August 2023]
+## 2.2.2 23th release(Expose a Notification Center API Method and Sound issues fixed)[ 17 August 2023]
 
 
 
