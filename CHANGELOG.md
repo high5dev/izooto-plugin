@@ -39,6 +39,9 @@
 
 ## 2.2.2 23th release(Expose a Notification Center API Method and Sound issues fixed)[ 17 August 2023]
 
+## 2.2.3 24th release(Support Default WebView)[ 25 August 2023]
+
+
 
 
 

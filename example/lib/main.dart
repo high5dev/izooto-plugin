@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
 
   //iZooto Integration
   Future<void> _iZootoInitialise() async {
-     iZooto.androidInit(); // for Android
+     iZooto.androidInit(true); // for Android
      iZooto.promptForPushNotifications(); 
      iZooto.setNotificationChannelName(" Push Notification  "); // channel name
      iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);

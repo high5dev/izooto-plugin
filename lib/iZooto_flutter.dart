@@ -106,8 +106,9 @@ class iZooto {
 
   //start Android
 
-  static Future<void> androidInit() async {
-    await _channel.invokeMethod(ANDROIDINIT);
+   static Future<void> androidInit(bool isDefaultWebView) async {
+    await _channel.invokeMethod(ANDROIDINIT, isDefaultWebView);
+
   }
   static Future<void> promptForPushNotifications() async {
     await _channel.invokeMethod(NOTIFICATION_PERMISSION);

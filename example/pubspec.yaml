@@ -33,7 +33,4 @@ false_secrets:
   -/example/android/app/google-services:
     json:
 
-flutter_icons:
-  image_path: "image/abc.jpeg"
-  android: true
-  ios: true
+
