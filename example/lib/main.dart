@@ -77,9 +77,12 @@ class _HomeState extends State<Home> {
      iZooto.promptForPushNotifications(); 
      iZooto.setNotificationChannelName(" Push Notification  "); // channel name
      iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
+     iZooto.addUserProperty("adsdd","csdsddds");
     if (Platform.isIOS) {
       iZooto.iOSInit(
           appId: "9f42c47c6d270255327c057ba31621cbd98ea12f"); // for iOS
+
+
     }
     // Received payload Android/iOS
     iZooto.shared.onNotificationReceived((payload) {
@@ -98,8 +101,10 @@ class _HomeState extends State<Home> {
          // MaterialPageRoute(builder: (context) => const SecondRoute()));
     });
 
-    var feedData = await iZooto.getNotificationFeed(false);
-    print('ABC $feedData');
+
+
+    //var feedData = await iZooto.getNotificationFeed(false);
+    //print('ABC $feedData');
 
     //LandingURLDelegate Android/iOS
     iZooto.shared.onWebView((landingUrl) {
@@ -111,6 +116,8 @@ class _HomeState extends State<Home> {
     iZooto.shared.onTokenReceived((token) {
       print('iZooto Flutter Token : $token ');
     });
+
+
     //iOS DeepLink Killed state code
     try {
       String value = await platform.invokeMethod("OpenNotification");

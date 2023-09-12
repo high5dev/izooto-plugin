@@ -1,5 +1,7 @@
-
+import 'dart:io';
 import 'dart:async';
+import 'dart:collection';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -66,11 +68,28 @@ class iZooto {
     });
 
   }
+
+ // This method supports on all plateform(Android/iOS)
+  static addUserProperty(String key, String value) async {
+    if(Platform.isIOS){
+    _channel.invokeMethod(ADDUSERPROPERTIES, {
+      'key': key,
+      'value': value,
+    });
+    }else{
+        var addValue = HashMap<String, Object>();
+        addValue[key] = value;
+       _channel.invokeMethod(PROPERTIES, addValue);
+
+    }
+  }
+  // this method is legecy, it will be deprecrated asap
   static addUserProperties(String key, String value) async {
     _channel.invokeMethod(ADDUSERPROPERTIES, {
       'key': key,
       'value': value,
     });
+    
   }
   static setSubscription(bool enable) async {
     _channel.invokeMethod(SETSUBSCRIPTION,enable);
@@ -136,9 +155,7 @@ class iZooto {
     await _channel.invokeMethod(
         EVENTS, {KEYEVENTNAME: eventName, KEYEVENTVALUE: eventValue});
   }
-  static Future<void> addUserProperty(Map<String, Object> addValue) async {
-    await _channel.invokeMethod(PROPERTIES, addValue);
-  }
+ 
   static Future<void> addTag(List<String> topicName) async {
     await _channel.invokeMethod(ADDTAG, topicName);
   }

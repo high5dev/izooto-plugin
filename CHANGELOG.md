@@ -41,6 +41,9 @@
 
 ## 2.2.3 24th release(Support Default WebView)[ 25 August 2023]
 
+## 2.3.0 25th release(Support NewsRoom Template Timer and Persistent)[ 12 Sep 2023]
+
+
 
 
 

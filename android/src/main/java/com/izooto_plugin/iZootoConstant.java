@@ -2,7 +2,6 @@ package com.izooto_plugin;
 
 public interface iZootoConstant {
 
-    String AndroidINITIASE ="iZootoAndroidInit";
     String SETSUBSCRIPTION = "iZootoSetSubscription";
     String FIREBASEANLYTICS = "iZootoFirebaseAnalytics";
     String ADDEVENTS = "iZootoAddEvents";
@@ -21,7 +20,7 @@ public interface iZootoConstant {
     String IZOOTO_DEFAULT_TEMPLATE = "izootoDefaultTemplate";
     String ANDROID_INITIALISE_WITH_TOKEN = "iZootoAndroidInitWithToken";
     String IZOOTO_DEFAULT_NOTIFICATION_BANNER = "izootoDefaultNotificationBanner";
-    String IZ_PLUGIN_VERSION ="fv_2.2.3";
+    String IZ_PLUGIN_VERSION ="fv_2.3.0";
     String IZ_ANDROID_INIT = "iZootoAndroidInit";
     String NOTIFICATION_PERMISSION="notificationPermission";
     String PLUGIN_EXCEPTION ="PluginException";

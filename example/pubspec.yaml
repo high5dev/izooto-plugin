@@ -30,7 +30,6 @@ flutter:
   uses-material-design: true
 
 false_secrets:
-  -/example/android/app/google-services:
-    json:
+  -/example/android/app/google-services.json
 
 
