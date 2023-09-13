@@ -43,6 +43,9 @@
 
 ## 2.3.0 25th release(Support NewsRoom Template Timer and Persistent)[ 12 Sep 2023]
 
+## 2.3.1 26th release(Cocoapods version issues fixed)[ 13 Sep 2023]
+
+
 
 
 
