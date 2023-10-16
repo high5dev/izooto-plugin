@@ -47,6 +47,7 @@
 
 ## 2.3.2 27th release(Support Timer and Persistent Notificaiton tempalte)[ 12 Oct 2023]
 
+## 2.3.3 28th release(HMS issues fixed)[ 16 Oct 2023]
 
 
 
