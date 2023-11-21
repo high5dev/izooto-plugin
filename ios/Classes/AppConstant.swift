@@ -28,7 +28,7 @@ class AppConstant
     static var IZ_PLUGIN_AUTO_PROMPT = "auto_prompt"
     static var IZ_PLUGIN_IS_WEBVIEW = "nativeWebview"
     static var IZ_PLUGIN_PROVISIONAL_AUTH = "provisionalAuthorization";
-    static var IZ_PLUGIN_VERSION = "fv_2.3.3"
+    static var IZ_PLUGIN_VERSION = "fv_2.3.4"
     static var IZ_PLUGIN_EVENT_NAME = "eventName"
     static var IZ_PLUGIN_PROPERTIES_KEY = "key"
     static var IZ_PLUGIN_PROPERTIES_VALUE = "value"
