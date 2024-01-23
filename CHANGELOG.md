@@ -50,6 +50,9 @@
 ## 2.3.3 28th release(HMS issues fixed)[ 16 Oct 2023]
 ## 2.3.4 29th release(Update the latest SDK)[ 21 Nov 2023]
 
+## 2.4.0 30th release(Support Notification Channel)[ 23 Jan 2024]
+
+
 
 
 

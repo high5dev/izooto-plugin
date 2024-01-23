@@ -20,7 +20,7 @@ public interface iZootoConstant {
     String IZOOTO_DEFAULT_TEMPLATE = "izootoDefaultTemplate";
     String ANDROID_INITIALISE_WITH_TOKEN = "iZootoAndroidInitWithToken";
     String IZOOTO_DEFAULT_NOTIFICATION_BANNER = "izootoDefaultNotificationBanner";
-    String IZ_PLUGIN_VERSION ="fv_2.3.4";
+    String IZ_PLUGIN_VERSION ="fv_2.4.0";
     String IZ_ANDROID_INIT = "iZootoAndroidInit";
     String NOTIFICATION_PERMISSION="notificationPermission";
     String PLUGIN_EXCEPTION ="PluginException";
