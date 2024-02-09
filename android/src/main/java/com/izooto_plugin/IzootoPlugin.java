@@ -294,8 +294,8 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 try {
                     JSONArray listArray = new JSONArray(receiveData);
                     JSONArray reverseList = new JSONArray();
-                    for (int i = listArray.length()-1; i>=0; i--) {
-                        reverseList.put(listArray.getJSONObject(i));
+                    if (listArray.length() > 0) {
+                        reverseList.put(listArray.getJSONObject(listArray.length() -1));
                     }
                     invokeMethodOnUiThread(iZootoConstant.iZOOTO_RECEIVED_PAYLOAD, reverseList.toString());
                 } catch (Exception e) {

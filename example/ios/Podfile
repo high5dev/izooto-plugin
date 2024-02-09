@@ -35,8 +35,6 @@ end
 target 'FlutteriZootoNotificationSextesnionServices' do
       pod 'iZootoiOSSDK'
 
-
-
 end
 post_install do |installer|
   installer.pods_project.targets.each do |target|

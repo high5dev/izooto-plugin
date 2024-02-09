@@ -52,6 +52,9 @@
 
 ## 2.4.0 30th release(Support Notification Channel)[ 23 Jan 2024]
 
+## 2.4.1 31th release(Bug Fixed)[ 09 Feb 2024]
+
+
 
 
 

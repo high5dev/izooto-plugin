@@ -21,7 +21,7 @@ To get started, sign up [here](https://panel.izooto.com/).
 
 ```yaml
 dependencies:
-izooto_plugin: ^2.4.0
+izooto_plugin: ^2.4.1
 ```
 
 - Run `flutter packages get` to install the SDK

@@ -75,9 +75,6 @@ class _HomeState extends State<Home> {
   Future<void> _iZootoInitialise() async {
      iZooto.androidInit(true); // for Android
      iZooto.promptForPushNotifications(); 
-     iZooto.setNotificationChannelName(" Push Notification  "); // channel name
-     iZooto.setDefaultTemplate(PushTemplate.TEXT_OVERLAY);
-     iZooto.addUserProperty("adsdd","csdsddds");
     if (Platform.isIOS) {
       iZooto.iOSInit(
           appId: "9f42c47c6d270255327c057ba31621cbd98ea12f"); // for iOS
@@ -88,10 +85,6 @@ class _HomeState extends State<Home> {
     iZooto.shared.onNotificationReceived((payload) {
       print('iZooto Flutter Payload : $payload ');
 
-      //List<dynamic> list = json.decode(payload);
-     // print(list.toString());
-     // List<String> receivedPayload = list.reversed.toList();
-     // print(receivedPayload);
     });
 
     // DeepLink Android/iOS
