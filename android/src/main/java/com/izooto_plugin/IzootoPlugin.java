@@ -60,8 +60,8 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
         switch (call.method) {
             case iZootoConstant.IZ_ANDROID_INIT:
                 iZooto.isHybrid = true;
-                preferenceUtil.setBooleanData(AppConstant.DEFAULT_WEB_VIEW, (boolean) call.arguments);
-                if (preferenceUtil.getBoolean(AppConstant.DEFAULT_WEB_VIEW)) {
+                preferenceUtil.setBooleanData(AppConstant.IZ_DEFAULT_WEB_VIEW, (boolean) call.arguments);
+                if (preferenceUtil.getBoolean(AppConstant.IZ_DEFAULT_WEB_VIEW)) {
                     iZooto.initialize(context)
                             .setTokenReceivedListener(iZootoNotificationListener)
                             .setNotificationReceiveListener(iZootoNotificationListener)
@@ -150,7 +150,7 @@ public class IzootoPlugin implements FlutterPlugin, MethodChannel.MethodCallHand
                 iZootoNotificationListener.onTokenReceived(notificationToken);
                 break;
             case iZootoConstant.IZ_HANDLE_WEB_VIEW:
-                if (!preferenceUtil.getBoolean(AppConstant.DEFAULT_WEB_VIEW)) {
+                if (!preferenceUtil.getBoolean(AppConstant.IZ_DEFAULT_WEB_VIEW)) {
                     try {
                         iZootoNotificationListener.onWebView(notificationWebView);
                         iZooto.notificationWebView(iZootoNotificationListener);
